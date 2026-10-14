@@ -1,7 +1,3 @@
-body {
-    height: 100vh;
-}
-
 @keyframes rise {
     from {
         transform: translateY(25px);
@@ -15,7 +11,7 @@ body {
 
 .login-page {
     width: 100%;
-    height: 100%;
+    height: 100vh;
     display: flex;
     overflow: hidden;
 }
