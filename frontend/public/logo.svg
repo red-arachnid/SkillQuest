@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240">
+  <g transform="scale(1.6) translate(5, 3)">
+    <!-- Graduation Cap -->
+    <g id="cap" transform="translate(3 -15)">
+      <path d="M105 54 V76" stroke="white" stroke-width="5" stroke-linecap="round"/>
+      <circle cx="105" cy="81" r="5" fill="white"/>
+      <path d="M22 53 L67 32 L112 53 L67 75 Z" stroke-width="4" stroke="white" stroke-linecap="round" fill="none"/>
+      <path d="M38 61 V79 C53 92 81 92 96 79 V61 L67 76 Z" stroke-width="4" stroke="white" stroke-linecap="round" fill="none"/>
+    </g>
+
+    <!-- Open Book -->
+    <g id="open-book" transform="scale(0.8) translate(-33 -30)">
+      <path d="M57 125 C77 119 99 123 119 137 L119 184 C98 171 76 168 57 175 Z" stroke-width="4" stroke="white" stroke-linecap="round" fill="none"/>
+      <path d="M121 137 C141 123 163 119 183 125 L183 175 C164 168 142 171 121 184 Z" stroke-width="4" stroke="white" stroke-linecap="round" fill="none"/>
+      <path d="M120 137 L120 185" stroke="white" stroke-width="4" stroke-linecap="square"/>
+    </g>
+  </g>
+</svg>

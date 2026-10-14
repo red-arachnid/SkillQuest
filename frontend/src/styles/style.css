@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+
+:root {
+    --color1: rgb(255, 255, 255);
+    --color2: rgb(238, 248, 253);
+    
+    --ui1: rgb(206, 54, 46);
+    --ui2: rgb(157, 239, 252);
+    --ui3: rgb(233, 177, 13);
+    --ui4: rgb(255, 209, 241);
+    --ui5: rgb(255, 235, 152);
+    --ui6: rgb(198, 241, 228);
+    --ui7: rgb(0, 123, 106);
+
+    --text-primary: rgb(25, 49, 60);
+    --text-secondary: rgb(51, 61, 65);
+
+    --border1: rgb(182, 217, 230);
+    --border2: rgb(98, 152, 175);
+
+    --shadow1: rgba(53, 105, 98, 0.15);
+
+    --font1: 'Fredoka', san-serif;
+    --font2: 'Nunito Sans', san-serif;
+
+}
+
+.test1 {
+    font-family: var(--font1);
+    color: var(--text-primary);
+}
+.test2  {
+    font-family: var(--font2);
+    color: var(--text-secondary);
+}
+
+.border1 {
+    height: 100px;
+    width: 100px;
+    border: 3px solid var(--border1);
+}
+.border2 {
+    height: 100px;
+    width: 100px;
+    border: 3px solid var(--border2);
+}
+
+.flex {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.shadow1 {
+    height: 100px;
+    width: 100px;
+    box-shadow: 4px 4px 1px var(--shadow1);
+    background-color: var(--ui5);
+}
+.shadow2 {
+    height: 100px;
+    width: 100px;
+}
+
+.colorbox {
+    height: 100px;
+    width: 100px;
+}
+.b1 { background-color: var(--color1); }
+.b2 { background-color: var(--color2); }
+.b3 { background-color: var(--ui1); }
+.b4 { background-color: var(--ui2); }
+.b5 { background-color: var(--ui3); }
+.b6 { background-color: var(--ui4); }
+.b7 { background-color: var(--ui5); }
+.b8 { background-color: var(--ui6); }
+.b9 { background-color: var(--ui7); }
