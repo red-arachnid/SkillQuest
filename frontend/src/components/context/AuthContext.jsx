@@ -12,12 +12,13 @@ export function AuthProvider({children}) {
 
     async function login(email, password) {
         const data = await apiCall("/api/auth/login", {method: "POST", body: { email, password } });
-        setUser(data.user);
+        setUser(data.name);
     }
 
     async function signup(name, email, password) {
         const data = await apiCall("/api/auth/signup", {method: "POST", body: { name, email, password } });
-        setUser(data.user);
+        setUser(data.name);
+        console.log(data.name);
     }
 
     return (
