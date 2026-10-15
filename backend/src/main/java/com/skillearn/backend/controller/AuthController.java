@@ -6,6 +6,7 @@ import com.skillearn.backend.service.AuthService;
 import jakarta.validation.Valid;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -20,13 +21,18 @@ public class AuthController {
 
     @PostMapping("/signup")
     @ResponseStatus(HttpStatus.CREATED) 
-    public UserResponse signup(@Valid @RequestBody SignupRequest request) {
+    public AuthResponse signup(@Valid @RequestBody SignupRequest request) {
         return authService.signup(request);
     }
 
     @PostMapping("/login")
     @ResponseStatus (HttpStatus.OK)
-    public UserResponse login(@Valid @RequestBody LoginRequest request) {
+    public AuthResponse login(@Valid @RequestBody LoginRequest request) {
         return authService.login(request);
+    }
+
+    @GetMapping("/me")
+    public UserResponse me(Authentication authentication) {
+        return authService.getCurrentUser(authentication.getName());
     }
 }

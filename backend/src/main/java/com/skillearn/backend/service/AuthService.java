@@ -13,13 +13,15 @@ import com.skillearn.backend.repository.UserRepository;
 public class AuthService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final JwtService jwtService;
 
-    public AuthService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public AuthService(UserRepository userRepository, PasswordEncoder passwordEncoder, JwtService jwtService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.jwtService = jwtService;
     }
 
-    public UserResponse signup(SignupRequest request) {
+    public AuthResponse signup(SignupRequest request) {
         String email = request.email().trim().toLowerCase();
 
         if (userRepository.existsByEmail(email)) {
@@ -29,10 +31,10 @@ public class AuthService {
         User user = new User(request.name().trim(), email, passwordEncoder.encode(request.password()));
         userRepository.save(user);
 
-        return new UserResponse(user.getId(), user.getName(), user.getEmail());
+        return buildResponse(user);
     }
 
-    public UserResponse login(LoginRequest request) {
+    public AuthResponse login(LoginRequest request) {
         String email = request.email().trim().toLowerCase();
 
         User user = userRepository.findByEmail(email)
@@ -42,6 +44,20 @@ public class AuthService {
             throw new ApiException(HttpStatus.UNAUTHORIZED, "Invalid email or password.");
         }
 
+        return buildResponse(user);
+    }
+
+    public UserResponse getCurrentUser(String email) {
+        User user = userRepository.findByEmail(email)
+                    .orElseThrow(() -> new ApiException(HttpStatus.UNAUTHORIZED, "User no longer exists"));
+        return createUserResponse(user);
+    }
+
+    private AuthResponse buildResponse(User user) {
+        return new AuthResponse(jwtService.generateToken(user.getEmail()), createUserResponse(user));
+    }
+
+    private UserResponse createUserResponse(User user) {
         return new UserResponse(user.getId(), user.getName(), user.getEmail());
     }
 }

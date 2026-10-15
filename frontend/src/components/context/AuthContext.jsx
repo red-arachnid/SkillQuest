@@ -1,5 +1,5 @@
-import { createContext, useCallback, useContext, useState } from "react";
-import { apiCall } from '../../api';
+import { createContext, useCallback, useContext, useEffect, useState } from "react";
+import { api, tokenStore } from '../../api';
 
 const AuthContext = createContext(null);
 
@@ -7,17 +7,34 @@ export function AuthProvider({children}) {
     const [user, setUser] = useState(null);
 
     const logout = useCallback(() => {
+        tokenStore.clear();
         setUser(null);
     }, []);
 
+    // If Time Expired -> Log out
+    useEffect(() => {
+        window.addEventListener("auth:expired", logout);
+        return () => window.removeEventListener("auth:expired", logout);
+    }, [logout]);
+
+    // Checks if a token is saved and checks it with backend
+    useEffect(() => {
+        if (!tokenStore.get()) return;
+        api("/api/auth/me")
+            .then(user => setUser(user))
+            .catch(() => tokenStore.clear());
+    }, []);
+
     async function login(email, password) {
-        const data = await apiCall("/api/auth/login", {method: "POST", body: { email, password } });
-        setUser(data.name);
+        const data = await api("/api/auth/login", {method: "POST", body: { email, password } });
+        tokenStore.set(data.token);
+        setUser(data.user);
     }
 
     async function signup(name, email, password) {
-        const data = await apiCall("/api/auth/signup", {method: "POST", body: { name, email, password } });
-        setUser(data.name);
+        const data = await api("/api/auth/signup", {method: "POST", body: { name, email, password } });
+        tokenStore.set(data.token);
+        setUser(data.user);
     }
 
     return (
