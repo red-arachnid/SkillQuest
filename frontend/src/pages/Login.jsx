@@ -1,56 +1,43 @@
-import '../styles/style.css';
-import '../styles/login.css';
-import Logo from '../../public/logo.svg?react';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import AuthPageInfo from '../components/AuthPageInfo';
+import InputField from '../components/utils/InputField';
 
 export default function Login() {
+    const [form, setForm] = useState({email: "", password: ""});
+    const [submitting, setSubmitting] = useState(false);
+
+    function onSubmit(e) {
+        e.preventDefault();
+
+        setSubmitting(true);
+    }
+
+    function onChange(e) {
+        setForm({ ...form, [e.target.name]: e.target.value });
+    }
+
     return (
-        <div className="login-page">
-            <div className="site-info">
-                <div className="brand">
-                    <div className="brand-logo">
-                        <Logo className="logo"/>
-                    </div>
-
-                    <div className="brand-name">
-                        <span>Skill</span>
-                        <span>Earn.</span>
-                    </div>
-                </div>
-
-                <div className="about">
-                    <h1>Stop wondering where to start.</h1>
-                    <p>Tell us what you want to learn. Get a day-by-day plan, a checklist and the right resources.</p>
-
-                    <div className="famous-skills">
-                        <div className="skill">Karate</div>
-                        <div className="skill">Chess</div>
-                        <div className="skill">Guitar</div>
-                        <div className="skill">Video Editing</div>
-                    </div>
-                </div>
-            </div>
+        <div className="auth-page">
+            <AuthPageInfo />
 
             <div className="form-container">
-                <form action="">
+                <form onSubmit={onSubmit} noValidate>
                     <h2>Welcome back</h2>
                     <p>Log in to continue your learning.</p>
 
                     {/* <div className="error">Invalid email or password</div> */}
+                    
+                    <InputField id="email" label="Email" error={errors.email} type="email" autoComplete="email" value={form.email} onChange={onChange}/>
 
-                    <div className="input-field">
-                        <label htmlFor="email">Email</label>
-                        <input type="email" name="email" id="email"/>
-                    </div>
+                    <InputField id="password" label="Password" error={errors.password} type="password" autoComplete="current-password" value={form.password} onChange={onChange}/>
 
-                    <div className="input-field">
-                        <label htmlFor="password">Password</label>
-                        <input type="password" name="password" id="password"/>
-                    </div>
-
-                    <button>Log In</button>
+                    <button type="submit" disabled={submitting}>
+                        {submitting ? "Logging in" : "Log in" }
+                    </button>
 
                     <div className="foot">
-                        <p>New here? <a href="">Create an account</a></p>
+                        <p>New here? <Link to="/signup">Create an account</Link></p>
                     </div>
                 </form>
             </div>

@@ -1,64 +1,69 @@
-import '../styles/style.css';
-import '../styles/login.css';
-import Logo from '../../public/logo.svg?react';
+import { Link } from 'react-router-dom';
+import AuthPageInfo from '../components/AuthPageInfo';
+import { useAuth } from '../components/context/AuthContext';
+import { useState } from 'react';
+import { validateSignup } from '../validation';
+import InputField from '../components/utils/InputField';
 
 export default function Signup() {
+    const { signup } = useAuth();
+    
+    const [form, setForm] = useState({ name: "", email: "", password: "", confirm: "" });
+    const [errors, setErrors] = useState({});
+    const [serverError, setServerError] = useState("");
+    const [submitting, setSubmitting] = useState(false);
+
+    async function onSubmit(e) {
+        e.preventDefault();
+        setServerError("");
+        
+        const errorFound = validateSignup(form);
+        setErrors(errorFound);
+        if (Object.keys(found).length > 0) return;  //Return if any error was found
+
+        //No frontend erros -> send to backend
+        setSubmitting(true);
+        try {
+            await signup(form.name, form.email, form.password);
+        }
+        catch (e) {
+            setServerError(e.message);
+            setErrors(e.fieldError);
+        }
+        finally {
+            setSubmitting(false);
+        }
+    }
+
+    function onChange(e) {
+        setForm({ ...form, [e.target.name]: e.target.value });
+    }
+
     return (
-        <div className="login-page">
-            <div className="site-info">
-                <div className="brand">
-                    <div className="brand-logo">
-                        <Logo className="logo"/>
-                    </div>
-
-                    <div className="brand-name">
-                        <span>Skill</span>
-                        <span>Earn.</span>
-                    </div>
-                </div>
-
-                <div className="about">
-                    <h1>Stop wondering where to start.</h1>
-                    <p>Tell us what you want to learn. Get a day-by-day plan, a checklist and the right resources.</p>
-
-                    <div className="famous-skills">
-                        <div className="skill">Karate</div>
-                        <div className="skill">Chess</div>
-                        <div className="skill">Guitar</div>
-                        <div className="skill">Video Editing</div>
-                    </div>
-                </div>
-            </div>
+        <div className="auth-page">
+            <AuthPageInfo />
 
             <div className="form-container">
-                <form action="">
+                <form onSubmit={onSubmit} noValidate>
                     <h2>Create your account</h2>
                     <p>It takes under a minute. Then pick your first skill.</p>
                     
-                    <div className="input-field">
-                    <label htmlFor="name">Name</label>
-                    <input type="text" name="name" id="name"/>
-                    </div>
-                    
-                    <div className="input-field">
-                    <label htmlFor="email">Email</label>
-                    <input type="email" name="email" id="email"/>
-                    </div>
-                    
-                    <div className="input-field">
-                    <label htmlFor="password">Password</label>
-                    <input type="password" name="password" id="password"/>
-                    </div>
+                    { serverError && <div className="error">{serverError}</div> }
 
-                    <div className="input-field">
-                    <label htmlFor="confirmPassword">Confirm Password</label>
-                    <input type="password" name="confirmPassword" id="confirmPassword"/>
-                    </div>
+                    <InputField id="name" label="Name" error={errors.name} type="text" autoComplete="name" value={form.name} onChange={onChange}/>
                     
-                    <button>Sign up</button>
+                    <InputField id="email" label="Email" error={errors.email} type="email" autoComplete="email" value={form.email} onChange={onChange}/>
+                    
+                    <InputField id="password" label="Password" error={errors.password} type="password" autoComplete="new-password" value={form.password} onChange={onChange}/>
+
+                    <InputField id="confirm" label="Confirm Password" error={errors.confirm} type="password" autoComplete="new-password" value={form.confirm} onChange={onChange}/>
+                    
+                    <button type="submit" disabled={submitting}>
+                        {submitting ? "Creating account" : "Create Account" }
+                    </button>
                     
                     <div className="foot">
-                    <p>Already have an account? <a href="">Log in</a></p>
+                        <p>Already have an account? <Link to="/login">Log In</Link></p>
                     </div>
                 </form>
             </div>
