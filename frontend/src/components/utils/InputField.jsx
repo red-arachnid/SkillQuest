@@ -12,7 +12,7 @@ export default function InputField({ id, label, error, ...inputProps }) {
                 aria-describedby={error ? `${id}-err` : undefined}
                 {...inputProps}
             />
-            {error && <p id={`${id}-err`} className="field-error"></p>}
+            {error && <p id={`${id}-err`} className="field-error">{error}</p>}
         </div>
     );
 }

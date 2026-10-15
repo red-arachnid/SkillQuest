@@ -19,7 +19,7 @@ export default function Signup() {
         
         const errorFound = validateSignup(form);
         setErrors(errorFound);
-        if (Object.keys(found).length > 0) return;  //Return if any error was found
+        if (Object.keys(errorFound).length > 0) return;  //Return if any error was found
 
         //No frontend erros -> send to backend
         setSubmitting(true);
