@@ -1,9 +1,11 @@
 package com.skillearn.backend.service;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.skillearn.backend.dto.*;
+import com.skillearn.backend.exception.ApiException;
 import com.skillearn.backend.model.User;
 import com.skillearn.backend.repository.UserRepository;
 
@@ -21,7 +23,7 @@ public class AuthService {
         String email = request.email().trim().toLowerCase();
 
         if (userRepository.existsByEmail(email)) {
-            throw new RuntimeException("Email Already Exists");
+            throw new ApiException(HttpStatus.CONFLICT, "An account with this email already exists");
         }
 
         User user = new User(request.name().trim(), email, passwordEncoder.encode(request.password()));

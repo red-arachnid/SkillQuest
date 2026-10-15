@@ -15,14 +15,14 @@ export async function apiCall(path, {method = "GET", body } = {}) {
             body: body ? JSON.stringify(body) : undefined,
         });
     }
-    catch (e) {
-        throw new Error("API CALL PROBLEM: " + e);
+    catch {
+        throw new Error("Cannot react the server...");
     }
 
     const data = await response.json().catch(() => null);
 
     if (!response.ok) {
-        throw new Error("Response not received");
+        throw new Error(data?.message ?? "Something went wrong");
     }
     return data;
 }

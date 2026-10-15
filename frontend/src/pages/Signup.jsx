@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import AuthPageInfo from '../components/AuthPageInfo';
 import { useAuth } from '../components/context/AuthContext';
 import { useState } from 'react';
@@ -7,6 +7,7 @@ import InputField from '../components/utils/InputField';
 
 export default function Signup() {
     const { signup } = useAuth();
+    const navigate = useNavigate();
     
     const [form, setForm] = useState({ name: "", email: "", password: "", confirm: "" });
     const [errors, setErrors] = useState({});
@@ -25,10 +26,11 @@ export default function Signup() {
         setSubmitting(true);
         try {
             await signup(form.name, form.email, form.password);
+            navigate("/", { replace: true });
         }
         catch (e) {
             setServerError(e.message);
-            setErrors(e.fieldError);
+            setErrors(e.errors ?? {});
         }
         finally {
             setSubmitting(false);

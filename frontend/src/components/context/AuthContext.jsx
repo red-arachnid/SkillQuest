@@ -18,7 +18,6 @@ export function AuthProvider({children}) {
     async function signup(name, email, password) {
         const data = await apiCall("/api/auth/signup", {method: "POST", body: { name, email, password } });
         setUser(data.name);
-        console.log(data.name);
     }
 
     return (

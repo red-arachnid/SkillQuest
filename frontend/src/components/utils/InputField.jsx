@@ -8,11 +8,11 @@ export default function InputField({ id, label, error, ...inputProps }) {
                 id={id}
                 name={id}
                 className={error ? "input-error" : ""}
-                aria-invalid={!!error}
-                aria-describedby={error ? `${id}-err` : undefined}
+                aria-invalid={Boolean(error)}
+                aria-describedby={Boolean(error) ? `${id}-err` : undefined}
                 {...inputProps}
             />
-            {error && <p id={`${id}-err`} className="field-error">{error}</p>}
+            {Boolean(error) && <p id={`${id}-err`} className="field-error">{error}</p>}
         </div>
     );
 }
