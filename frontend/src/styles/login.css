@@ -94,10 +94,16 @@
     cursor: pointer;
 }
 
-form {
+.form-container {
     width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+form {
+    min-width: 500px;
     background-color: var(--color1);
-    padding: 260px;
     font-family: var(--font2);
     color: var(--text-secondary);
     font-size: 20px;
@@ -134,18 +140,20 @@ form p {
     font-size: 16px;
 }
 .input-field input {
+    font-size: 17px;
     width: 100%;
-    padding: 10px 14px;
+    padding: 12px 14px;
     border-radius: 12px;
     border: 1px solid var(--border1);
 }
 .input-field input:focus {
-    border-color: var(--border2);
+    outline: 1px solid var(--border2);
 }
 
 form button {
     width: 100%;
     padding: 10px 14px;
+    margin-top: 5px;
     font-size: 18px;
     background-color: var(--ui5);
     font-family: var(--font2);

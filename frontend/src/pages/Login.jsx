@@ -30,28 +30,30 @@ export default function Login() {
                 </div>
             </div>
 
-            <form action="">
-                <h2>Welcome back</h2>
-                <p>Log in to continue your learning.</p>
+            <div className="form-container">
+                <form action="">
+                    <h2>Welcome back</h2>
+                    <p>Log in to continue your learning.</p>
 
-                <div className="error">Invalid email or password</div>
+                    {/* <div className="error">Invalid email or password</div> */}
 
-                <div className="input-field">
-                    <label htmlFor="email">Email</label>
-                    <input type="email" name="email" id="email"/>
-                </div>
+                    <div className="input-field">
+                        <label htmlFor="email">Email</label>
+                        <input type="email" name="email" id="email"/>
+                    </div>
 
-                <div className="input-field">
-                    <label htmlFor="password">Password</label>
-                    <input type="password" name="password" id="password"/>
-                </div>
+                    <div className="input-field">
+                        <label htmlFor="password">Password</label>
+                        <input type="password" name="password" id="password"/>
+                    </div>
 
-                <button>Log In</button>
+                    <button>Log In</button>
 
-                <div className="foot">
-                    <p>New here? <a href="">Create an account</a></p>
-                </div>
-            </form>
+                    <div className="foot">
+                        <p>New here? <a href="">Create an account</a></p>
+                    </div>
+                </form>
+            </div>
         </div>
     );
 }
