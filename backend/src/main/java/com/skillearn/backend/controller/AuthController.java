@@ -25,6 +25,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
+    @ResponseStatus (HttpStatus.OK)
     public UserResponse login(@Valid @RequestBody LoginRequest request) {
         return authService.login(request);
     }
