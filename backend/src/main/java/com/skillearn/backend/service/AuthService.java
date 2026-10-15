@@ -31,4 +31,17 @@ public class AuthService {
 
         return new UserResponse(user.getId(), user.getName(), user.getEmail());
     }
+
+    public UserResponse login(LoginRequest request) {
+        String email = request.email().trim().toLowerCase();
+
+        User user = userRepository.findByEmail(email)
+                    .orElseThrow(() -> new ApiException(HttpStatus.UNAUTHORIZED, "Invalid email or password."));
+        
+        if (!passwordEncoder.matches(request.password(), user.getPasswordHash())) {
+            throw new ApiException(HttpStatus.UNAUTHORIZED, "Invalid email or password.");
+        }
+
+        return new UserResponse(user.getId(), user.getName(), user.getEmail());
+    }
 }

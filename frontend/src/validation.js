@@ -22,3 +22,12 @@ export function validateSignup({ name, email, password, confirm }) {
     if (confirm !== password) errors.confirm = "Password do not match";
     return errors;
 }
+
+export function validateLogin({ email, password }) {
+    const errors = {};
+    const emailErr = checkEmail(email);
+    if (emailErr) errors.email = emailErr;
+
+    if (!password) errors.password = "Password is required";
+    return errors;
+}

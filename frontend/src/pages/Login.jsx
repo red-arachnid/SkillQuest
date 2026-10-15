@@ -1,16 +1,41 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import AuthPageInfo from '../components/AuthPageInfo';
 import InputField from '../components/utils/InputField';
+import { useAuth } from '../components/context/AuthContext';
+import { validateLogin } from '../validation';
 
 export default function Login() {
+    const { login } = useAuth();
+    const navigate = useNavigate();
+
     const [form, setForm] = useState({email: "", password: ""});
+    const [errors, setErrors] = useState({});
+    const [serverError, setServerError] = useState("");
     const [submitting, setSubmitting] = useState(false);
 
-    function onSubmit(e) {
+    async function onSubmit(e) {
         e.preventDefault();
+        setServerError("");
+
+        const errorFound = validateLogin(form);
+        if (Object.keys(errorFound).length > 0) {
+            setErrors(errorFound);
+            return;
+        }
 
         setSubmitting(true);
+        try {
+            await login(form.email, form.password);
+            navigate("/", { replace : true });
+        }
+        catch (e) {
+            setServerError(e.message);
+            setErrors(e.fieldErrors ?? {})
+        }
+        finally {
+            setSubmitting(false);
+        }
     }
 
     function onChange(e) {
@@ -26,8 +51,8 @@ export default function Login() {
                     <h2>Welcome back</h2>
                     <p>Log in to continue your learning.</p>
 
-                    {/* <div className="error">Invalid email or password</div> */}
-                    
+                    { serverError && <div className="error">{serverError}</div> }
+
                     <InputField id="email" label="Email" error={errors.email} type="email" autoComplete="email" value={form.email} onChange={onChange}/>
 
                     <InputField id="password" label="Password" error={errors.password} type="password" autoComplete="current-password" value={form.password} onChange={onChange}/>

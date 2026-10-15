@@ -19,8 +19,11 @@ export default function Signup() {
         setServerError("");
         
         const errorFound = validateSignup(form);
-        setErrors(errorFound);
-        if (Object.keys(errorFound).length > 0) return;  //Return if any error was found
+        //Return if any error was found
+        if (Object.keys(errorFound).length > 0) {
+            setErrors(errorFound);
+            return;
+        }  
 
         //No frontend erros -> send to backend
         setSubmitting(true);
@@ -30,7 +33,7 @@ export default function Signup() {
         }
         catch (e) {
             setServerError(e.message);
-            setErrors(e.errors ?? {});
+            setErrors(e.fieldErrors ?? {}); // Still need to set up errors that are coming with data response
         }
         finally {
             setSubmitting(false);
