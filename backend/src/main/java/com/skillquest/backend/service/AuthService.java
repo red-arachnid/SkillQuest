@@ -1,13 +1,13 @@
-package com.skillearn.backend.service;
+package com.skillquest.backend.service;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.skillearn.backend.dto.*;
-import com.skillearn.backend.exception.ApiException;
-import com.skillearn.backend.model.User;
-import com.skillearn.backend.repository.UserRepository;
+import com.skillquest.backend.dto.*;
+import com.skillquest.backend.exception.ApiException;
+import com.skillquest.backend.model.User;
+import com.skillquest.backend.repository.UserRepository;
 
 @Service 
 public class AuthService {

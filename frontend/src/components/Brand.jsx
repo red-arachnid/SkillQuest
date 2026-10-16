@@ -10,7 +10,7 @@ export default function Brand({ size = 'md', className = ''}) {
 
             <div className="brand-name">
                 <span>Skill</span>
-                <span>Earn.</span>
+                <span>Quest.</span>
             </div>
         </div>
     );

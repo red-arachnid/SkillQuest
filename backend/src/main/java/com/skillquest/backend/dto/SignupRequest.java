@@ -1,4 +1,4 @@
-package com.skillearn.backend.dto;
+package com.skillquest.backend.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

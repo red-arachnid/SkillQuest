@@ -1,4 +1,4 @@
-package com.skillearn.backend.model;
+package com.skillquest.backend.model;
 
 import jakarta.persistence.*;
 import java.time.Instant;

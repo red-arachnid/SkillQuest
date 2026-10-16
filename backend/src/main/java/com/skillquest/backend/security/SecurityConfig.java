@@ -1,4 +1,4 @@
-package com.skillearn.backend.security;
+package com.skillquest.backend.security;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.skillearn.backend.service;
+package com.skillquest.backend.service;
 
 import javax.crypto.SecretKey;
 import java.util.Date;

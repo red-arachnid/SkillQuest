@@ -1,4 +1,4 @@
-package com.skillearn.backend.exception;
+package com.skillquest.backend.exception;
 
 import org.springframework.http.HttpStatus;
 

@@ -1,8 +1,9 @@
-package com.skillearn.backend.repository;
+package com.skillquest.backend.repository;
 
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.skillearn.backend.model.User;
+
+import com.skillquest.backend.model.User;
 
 
 // Similar to the DbContextRepository in dotnet
