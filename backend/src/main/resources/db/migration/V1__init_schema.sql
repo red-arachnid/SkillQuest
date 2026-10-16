@@ -1,13 +1,12 @@
-
-CREATE USER users (
+CREATE TABLE users (
     id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
     email VARCHAR(255) NOT NULL,
     password_hash VARCHAR(255) NOT NULL,
     created_at DATETIME(6) NOT NULL,
     current_streak INT NOT NULL DEFAULT 0,
-    longetst_streak INT NOT NULL DEFAULT 0,
-    last_active_time DATE NULL,
+    longest_streak INT NOT NULL DEFAULT 0,
+    last_active_date DATE NULL,
     CONSTRAINT uk_users_email UNIQUE (email)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -51,10 +50,8 @@ CREATE TABLE resources (
     type VARCHAR(20) NOT NULL DEFAULT 'ARTICLE',
     is_free BIT(1) NOT NULL DEFAULT b'1',
     CONSTRAINT fk_resources_skill FOREIGN KEY (skill_id) REFERENCES skills (id) ON DELETE CASCADE,
-    CONSTRAINT fk_resources_task FOREIGN KEY (task_id) REFERENCES skills_tasks (id) ON DELETE SET NULL
+    CONSTRAINT fk_resources_task FOREIGN KEY (task_id) REFERENCES skill_tasks (id) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-
 
 CREATE TABLE user_skills (
     id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -62,12 +59,12 @@ CREATE TABLE user_skills (
     skill_id BIGINT NOT NULL,
     status VARCHAR(20) NOT NULL DEFAULT 'ACTIVE',
     preferred_format VARCHAR(20) NULL,
-    target_days VARCHAR(20) NULL,
+    target_days INT NULL,
     started_at DATETIME(6) NOT NULL,
     completed_at DATETIME(6) NULL,
     CONSTRAINT uk_user_skill UNIQUE (user_id, skill_id),
     CONSTRAINT fk_user_skills_user FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
-    CONSTRAINT fk_user_skills_user FOREIGN KEY (skill_d) REFERENCES skills (id) on DELETE RESTRICT
+    CONSTRAINT fk_user_skills_skill FOREIGN KEY (skill_id) REFERENCES skills (id) ON DELETE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE user_tasks (
@@ -79,7 +76,7 @@ CREATE TABLE user_tasks (
     completed_at DATETIME(6) NULL,
     CONSTRAINT uk_user_task UNIQUE (user_skill_id, task_id),
     CONSTRAINT fk_user_tasks_user_skill FOREIGN KEY (user_skill_id) REFERENCES user_skills (id) ON DELETE CASCADE,
-    CONSTRAINT fk_user_tasks_task FOREIGN KEY (task_id) REFERENCES skill_tasks (id) ON DELTE RESTRICT,
+    CONSTRAINT fk_user_tasks_task FOREIGN KEY (task_id) REFERENCES skill_tasks (id) ON DELETE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE activity_log (
@@ -87,7 +84,6 @@ CREATE TABLE activity_log (
     user_id BIGINT NOT NULL,
     activity_date DATE NOT NULL,
     tasks_completed INT NOT NULL DEFAULT 0,
-    PRIMARY KEY (id),
     CONSTRAINT uk_user_day UNIQUE (user_id, activity_date),
     CONSTRAINT fk_activity_user FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

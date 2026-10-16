@@ -40,7 +40,7 @@ public class Skill {
     private String icon;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, columnDefinition = "varchar(20")
+    @Column(nullable = false, columnDefinition = "varchar(20)")
     private Difficulty difficulty = Difficulty.BEGINNER;
 
     @Column(nullable = false)
