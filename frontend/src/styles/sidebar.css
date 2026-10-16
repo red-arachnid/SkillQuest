@@ -1,5 +1,6 @@
 .sidebar {
     width: 232px;
+    height: 100vh;
     background-color: var(--color1);
     border-right: 2px solid var(--border1);
     padding: 34px 22px;
@@ -9,6 +10,11 @@
     gap: 34px;
 
     font-family: var(--font2);
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 5;
 }
 
 .sidebar-section>p {

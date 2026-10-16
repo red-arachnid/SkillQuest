@@ -2,3 +2,10 @@
     height: 100vh;
     display: flex;
 }
+
+.content {
+    margin-left: 232px;
+    width: calc(100vw - 232px);
+    height: 100vh;
+    overflow: hidden;
+}
