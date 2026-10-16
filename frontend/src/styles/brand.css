@@ -1,17 +1,16 @@
 .brand {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: var(--brand-gap);
     
-    padding: 52px;
     animation: rise 0.7s 0.05s both ease;
 }
 
 .brand-logo {
-    width: 60px;
-    height: 60px;
-    padding: 2px;
-    border-radius: 14px;
+    width: var(--brand-logo-size);
+    height: var(--brand-logo-size);
+    padding: 4px;
+    border-radius: var(--brand-logo-radius);
     transform: rotate(-4deg);
     background-color: var(--ui1);
 
@@ -21,14 +20,29 @@
     height: 100%;
     width: 100%;
     color: white;
+    --icon-stroke-width: 7px;
 }
 
 .brand-name {
-    font-size: 38px;
+    font-size: var(--brand-font-size);
     font-family: var(--font1);
     font-weight: 600;
     display: flex;
 }
 .brand-name span:last-child{
     color: var(--ui1);
+}
+
+.brand--sm {
+    --brand-logo-size: 38px;
+    --brand-logo-radius: 8px;
+    --brand-font-size: 30px;
+    --brand-gap: 8px;
+}
+
+.brand--md {
+    --brand-logo-size: 60px;
+    --brand-logo-radius: 14px;
+    --brand-font-size: 32px;
+    --brand-gap: 20px;
 }

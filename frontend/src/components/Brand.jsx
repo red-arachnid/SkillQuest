@@ -1,11 +1,11 @@
 import Logo from '../../public/logo.svg?react';
 import '../styles/brand.css'
 
-export default function Brand() {
+export default function Brand({ size = 'md', className = ''}) {
     return (
-        <div className="brand">
+        <div className={`brand brand--${size} ${className}`.trim()}>
             <div className="brand-logo">
-                <Logo className="logo"/>
+                <Logo className="logo" />
             </div>
 
             <div className="brand-name">

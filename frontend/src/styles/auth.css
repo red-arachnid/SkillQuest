@@ -19,6 +19,7 @@
 .site-info {
     width: 50%;
     background-color: var(--color2);
+    padding: 0px 52px;
 
     display: grid;
     grid-template-rows: 1fr 4fr 1fr;
@@ -28,7 +29,6 @@
     width: 100%;
     margin: auto 0;
     font-family: var(--font2);
-    padding: 0px 52px;
 }
 
 .about h1 {
@@ -88,7 +88,7 @@ form p {
     font-size: 16px;
     text-align: left;
     color: var(--ui1);
-    background-color: rgba(206, 54, 46, 0.3);
+    background-color: var(--ui1-light);
     border-radius: 12px;
     border: 1px solid var(--ui1);
     margin-bottom: 18px;

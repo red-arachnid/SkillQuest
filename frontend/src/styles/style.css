@@ -23,6 +23,7 @@
     --font1: 'Fredoka', san-serif;
     --font2: 'Nunito Sans', san-serif;
 
+    --ui1-light: hsl(3, 63%, 90%); 
 }
 
 * {
