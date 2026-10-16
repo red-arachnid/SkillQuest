@@ -2,6 +2,7 @@ package com.skillquest.backend.model;
 
 import jakarta.persistence.*;
 import java.time.Instant;
+import java.time.LocalDate;
 
 @Entity 
 @Table(name = "users")
@@ -22,6 +23,14 @@ public class User {
     @Column(nullable = false, updatable = false)
     private Instant createdAt = Instant.now();  //DateTime.Now;
 
+    @Column(nullable = false)
+    private int currentStreak = 0;
+
+    @Column(nullable = false)
+    private int longestStreak = 0;
+
+    private LocalDate lastActiveDate;
+
     protected User() {}
     public User(String name, String email, String passwordHash) {
         this.name = name;
@@ -34,4 +43,11 @@ public class User {
     public String getEmail() { return email; }
     public String getPasswordHash() { return passwordHash; }
     public Instant getCreatedAt() { return createdAt; }
+    public int getCurrentStreak() { return currentStreak; }
+    public int getLongestStreak() { return longestStreak; }
+    public LocalDate getLastActiveDate() { return lastActiveDate; }
+
+    public void setCurrentStreak(int currentStreak) { this.currentStreak = currentStreak; }
+    public void setLongestStreak(int longestStreak) { this.longestStreak = longestStreak; }
+    public void setLastActiveDate(LocalDate lastActiveDate) { this.lastActiveDate = lastActiveDate; }
 }
