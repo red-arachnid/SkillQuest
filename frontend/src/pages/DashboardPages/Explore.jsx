@@ -2,6 +2,6 @@
 
 export default function Explore() {
     return (
-        <h1>EXPLORE SECTION</h1>
+        <h1>EXPLORE PAGE</h1>
     );
 }

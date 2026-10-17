@@ -8,18 +8,18 @@ export default function ProfileIcon({ profileName }) {
 
 const style = {
     display: "flex",
-    "align-items": "center",
-    "justify-content": "center",
+    alignItems: "center",
+    justifyContent: "center",
 
-    "background-color": "var(--ui4)",
-    "width": "35px",
-    "height": "35px",
-    "border-radius": "50%",
+    backgroundColor: "var(--ui4)",
+    width: "35px",
+    height: "35px",
+    borderRadius: "50%",
     border: "2px solid var(--border2)",
 
     color: "var(--text-primary)",
-    "font-family": "var(--font1)",
-    "font-weight": "500",
-    "font-size": "14px",
+    fontFamily: "var(--font1)",
+    fontWeight: "500",
+    fontSize: "14px",
     cursor: "pointer",
 }

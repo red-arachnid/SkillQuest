@@ -1,5 +1,5 @@
 import '../styles/sidebar.css';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import Brand from './Brand';
 import { faCompass } from '@fortawesome/free-regular-svg-icons';
 import { faBookOpen, faBullseye, faGraduationCap, faBolt, faSquareArrowUpRight} from '@fortawesome/free-solid-svg-icons'
@@ -7,6 +7,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ProfileIcon from './utils/ProfileIcon';
 
 export default function Sidebar() {
+    function getNavClass({isActive}) {
+        return isActive ? "active" : "";
+    }
+
     return (
         <div className="sidebar">
             <Brand size='sm'/>
@@ -14,30 +18,30 @@ export default function Sidebar() {
             <div className="sidebar-section">
                 <p>LET'S GO LEARN</p>
                 <div className="con">
-                    <Link to="" className="active">
+                    <NavLink to="/explore" className={getNavClass}>
                         <FontAwesomeIcon icon={faCompass}/>
                         <p>Explore skills</p>
-                    </Link>
-                    <Link to="" className="">
+                    </NavLink>
+                    <NavLink to="/learning" className={getNavClass}>
                         <FontAwesomeIcon icon={faBookOpen}/>
                         <p>My Learning</p>
-                    </Link>
+                    </NavLink>
                 </div>
             </div>
 
             <div className="sidebar-section">
                 <p>KEEP GROWING</p>
                 <div className="con">
-                    <Link to="" className="">
+                    <NavLink to="" className={getNavClass}>
                         <FontAwesomeIcon icon={faBullseye}/>
                         <p>Daily challenge</p>
                         <FontAwesomeIcon icon={faBolt} color="var(--ui3)"/>
-                    </Link>
-                    <Link to="" className="">
+                    </NavLink>
+                    <NavLink to="" className={getNavClass}>
                         <FontAwesomeIcon icon={faGraduationCap}/>
                         <p>Community</p>
                         <FontAwesomeIcon icon={faSquareArrowUpRight} />
-                    </Link>
+                    </NavLink>
                 </div>
             </div>
 

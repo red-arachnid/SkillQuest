@@ -4,6 +4,7 @@ import DashboardLayout from './pages/DashboardLayout';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { useAuth } from './components/context/AuthContext';
 import Explore from './pages/DashboardPages/Explore';
+import Learning from './pages/DashboardPages/Learning';
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
       <Route index element={<Navigate to="/explore" replace />} />
 
       <Route path="explore" element={<Explore />} />
+      <Route path="learning" element={<Learning />} />
     </Route>
   </Routes>
   );

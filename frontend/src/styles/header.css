@@ -3,4 +3,57 @@
     height: 80px;
     background-color: var(--color1);
     border-bottom: 2px solid var(--border1);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 42px;
+}
+
+.header-left p {
+    font-family: var(--font2);
+    font-size: 14px;
+}
+.header-left p:last-child {
+    font-weight: 600;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
+.notification {
+    color: var(--text-primary);
+    padding: 10px 8px;
+    border-radius: 6px;
+
+    transition: background-color 0.2s ease,
+                color 0.2s ease;
+}
+.notification:hover {
+    background-color: var(--ui4);
+    color: var(--ui1);
+}
+
+.header-right .bar {
+    width: 2px;
+    height: 22px;
+    background-color: var(--border1);
+}
+
+.styled-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1px solid var(--border1);
+
+    font-family: var(--font2);
+    font-size: 13px;
+    font-weight: 600;
 }
