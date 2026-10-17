@@ -4,8 +4,9 @@
 }
 
 .content {
-    margin-left: 232px;
-    width: calc(100vw - 232px);
+    /* margin-left: 232px; */
+    width: calc(100vw);
     height: 100vh;
     overflow: hidden;
+    background-color: pink;
 }

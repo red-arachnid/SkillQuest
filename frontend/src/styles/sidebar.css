@@ -11,7 +11,7 @@
 
     font-family: var(--font2);
 
-    position: fixed;
+    position: sticky;
     top: 0;
     left: 0;
     z-index: 5;
@@ -56,4 +56,39 @@
     border: 1px solid var(--border1);
     color: var(--text-primary);
     font-weight: 500;
+}
+
+.sidebar-footer {
+    flex: 1 1 0;
+    display: flex;
+    justify-content: start;
+    align-items: end;
+}
+
+.sidebar-profile {
+    border-top: 1px solid var(--border1);
+    width: 100%;
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1 1 0;
+    
+}
+.profile-info .name {
+    font-size: 14px;
+    font-family: var(--font1);
+    color: var(--text-primary);
+}
+.profile-info .level {
+    font-size: 10px;
+    font-family: var(--font2);
+    color: var(--text-secondary);
 }

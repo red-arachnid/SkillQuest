@@ -4,6 +4,7 @@ import Brand from './Brand';
 import { faCompass } from '@fortawesome/free-regular-svg-icons';
 import { faBookOpen, faBullseye, faGraduationCap, faBolt, faSquareArrowUpRight} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ProfileIcon from './utils/ProfileIcon';
 
 export default function Sidebar() {
     return (
@@ -37,6 +38,16 @@ export default function Sidebar() {
                         <p>Community</p>
                         <FontAwesomeIcon icon={faSquareArrowUpRight} />
                     </Link>
+                </div>
+            </div>
+
+            <div className="sidebar-footer">
+                <div className="sidebar-profile">
+                    <ProfileIcon profileName="AY" />
+                    <div className="profile-info">
+                        <p className="name">Aniket Yadav</p>
+                        <p className="level">Curious mind · Level 1</p>
+                    </div>
                 </div>
             </div>
         </div>
