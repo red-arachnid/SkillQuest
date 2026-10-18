@@ -8,11 +8,94 @@
     margin-bottom: 30px;
 }
 
-.skill-con {
+.skillcard-container {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 15px;
 }
 
+.confirm-learning-box {
+    position: absolute;
+    top: 0; left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: var(--overlay);
+    z-index: 300;
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.confirm-learning {
+    position: relative;
+    background-color: var(--color1);
+    width: 510px;
 
+    border-radius: 8px;
+    border: 1px solid var(--border1);
+    padding: 24px;
+}
+
+.confirm-learning .close {
+    position: absolute;
+    right: 24px;
+    top: 24px;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+}
+.confirm-learning .close:hover {
+    color: var(--text-primary);
+}
+
+.confirm-learning .category {
+    color: var(--ui1);
+    font-family: var(--font2);
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+.confirm-learning h4 {
+    color: var(--text-primary);
+    font-family: var(--font1);
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+.confirm-learning .description {
+    color: var(--text-secondary);
+    font-family: var(--font2);
+}
+
+.confirm-learning .skill-info {
+    margin: 14px 0;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+.confirm-learning .skill-info > div {
+    font-family: var(--font2);
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.confirm-learning .confirm-button {
+    padding: 8px 16px;
+    width: 100%;
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0px 4px 1px var(--ui1-dark);
+
+    background-color: var(--ui1);
+    color: white;
+    font-family: var(--font2);
+    font-size: 14px;
+    font-weight: 700;
+    transition: box-shadow 0.2s ease,
+                transform 0.2s ease;
+}
+.confirm-learning .confirm-button:active {
+    box-shadow: none;
+    transform: translateY(4px);
+}

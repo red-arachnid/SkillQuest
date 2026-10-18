@@ -42,7 +42,7 @@
     color: white;
     border: none;
     border-radius: 8px;
-    box-shadow: 0px 4px 1px hsl(3, 63%, 29%);
+    box-shadow: 0px 4px 1px var(--ui1-dark);
 
     transition: transform 0.1s ease,
                 box-shadow 0.1s ease;

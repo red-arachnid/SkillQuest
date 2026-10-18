@@ -11,6 +11,14 @@
     align-items: center;
     justify-content: space-between;
     gap: 15px;
+
+    transition: transform 0.2s ease,
+                border-color 0.2s ease;
+}
+
+.skill-card:hover {
+    border-color: var(--border2);
+    transform: translateY(-2px);
 }
 
 .skill-card .info {
@@ -38,9 +46,14 @@
     align-items: center;
     justify-content: center;
     transition: background-color 0.1s ease,
-                color 0.1s ease;
+                color 0.1s ease,
+                border-color 0.1s ease;
+}
+.skill-card button p {
+    margin: 0 6px;
 }
 .skill-card button:hover {
     background-color: var(--ui1-light);
     color: var(--ui1);
+    border-color: var(--ui1);
 }

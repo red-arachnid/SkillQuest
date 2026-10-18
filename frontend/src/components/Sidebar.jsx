@@ -31,7 +31,7 @@ export default function Sidebar({ profileName }) {
                 </div>
             </div>
 
-            <div className="sidebar-section">
+            {/* <div className="sidebar-section">
                 <p>KEEP GROWING</p>
                 <div className="con">
                     <NavLink to="" className={getNavClass}>
@@ -45,7 +45,7 @@ export default function Sidebar({ profileName }) {
                         <FontAwesomeIcon icon={faSquareArrowUpRight} />
                     </NavLink>
                 </div>
-            </div>
+            </div> */}
 
             <div className="sidebar-footer">
                 <div className="sidebar-profile">
