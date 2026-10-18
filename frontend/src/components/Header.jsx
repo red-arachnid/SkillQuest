@@ -3,8 +3,12 @@ import '../styles/header.css';
 import ProfileIcon from './utils/ProfileIcon';
 import { faBell } from '@fortawesome/free-regular-svg-icons'
 import { faFireFlameCurved, faBolt } from '@fortawesome/free-solid-svg-icons'
+import { useAuth } from './context/AuthContext';
 
-export default function Header() {
+export default function Header({ profileName }) {
+    const { user } = useAuth();
+    const streak = user.currentStreak ?? 0;
+
     return (
         <div className="header">
             <div className="header-left">
@@ -14,15 +18,15 @@ export default function Header() {
             <div className="header-right">
                 <StyledInfo 
                     icon={faFireFlameCurved} 
-                    iconColor="var(--ui1)" 
-                    text="2 days streak" 
+                    iconColor={(streak > 0) ? "var(--ui1)" : "hsl(3, 14%, 29%)"} 
+                    text={(streak > 1) ? `${streak} days streak` : `${streak} day streak`}
                     backgroundColor="var(--ui6)"
                 />
 
                 <StyledInfo 
                     icon={faBolt} 
                     iconColor="var(--ui1)" 
-                    text="120 XP" 
+                    text={`${user.userXp} XP`} 
                     backgroundColor="var(--ui5)"
                 />
 
@@ -32,7 +36,7 @@ export default function Header() {
                     <FontAwesomeIcon icon={faBell} size="md"/>
                 </div>
 
-                <ProfileIcon profileName="AY"/>
+                <ProfileIcon profileName={profileName}/>
             </div>
         </div>
     );

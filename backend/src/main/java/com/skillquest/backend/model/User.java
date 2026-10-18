@@ -31,6 +31,11 @@ public class User {
 
     private LocalDate lastActiveDate;
 
+    @Column(nullable = false)
+    private int userXp = 0;
+
+    private Long lastActiveSkill;
+
     protected User() {}
     public User(String name, String email, String passwordHash) {
         this.name = name;
@@ -46,8 +51,12 @@ public class User {
     public int getCurrentStreak() { return currentStreak; }
     public int getLongestStreak() { return longestStreak; }
     public LocalDate getLastActiveDate() { return lastActiveDate; }
+    public int getUserXp() { return userXp; }
+    public Long getLastActiveSkill() { return lastActiveSkill; }
 
     public void setCurrentStreak(int currentStreak) { this.currentStreak = currentStreak; }
     public void setLongestStreak(int longestStreak) { this.longestStreak = longestStreak; }
     public void setLastActiveDate(LocalDate lastActiveDate) { this.lastActiveDate = lastActiveDate; }
+    public void setUserXp(int userXp) { this.userXp = userXp; }
+    public void setLastActiveSkill(Long lastActiveSkill) { this.lastActiveSkill = lastActiveSkill; }
 }

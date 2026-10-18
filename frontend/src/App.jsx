@@ -8,17 +8,18 @@ import Learning from './pages/DashboardPages/Learning';
 
 export default function App() {
   return (
-  <Routes>
-    {/* <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-    <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
-    <Route path="/signup" element={<PublicRoute><Signup /></PublicRoute>} /> */}
-    <Route path="/" element={<DashboardLayout />}>
-      <Route index element={<Navigate to="/explore" replace />} />
+    <Routes>
+      <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
+      <Route path="/signup" element={<PublicRoute><Signup /></PublicRoute>} />
+      <Route path="/" element={<ProtectedRoute><DashboardLayout /></ProtectedRoute>}>
+        <Route index element={<Navigate to="/explore" replace />} />
 
-      <Route path="explore" element={<Explore />} />
-      <Route path="learning" element={<Learning />} />
-    </Route>
-  </Routes>
+        <Route path="explore" element={<Explore />} />
+        <Route path="learning" element={<Learning />} />
+      </Route>
+
+      <Route path="*" element={<ProtectedRoute><Navigate to="/expolre" replace/></ProtectedRoute>} />
+    </Routes>
   );
 }
 

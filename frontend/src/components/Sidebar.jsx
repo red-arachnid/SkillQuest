@@ -5,8 +5,10 @@ import { faCompass } from '@fortawesome/free-regular-svg-icons';
 import { faBookOpen, faBullseye, faGraduationCap, faBolt, faSquareArrowUpRight} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ProfileIcon from './utils/ProfileIcon';
+import { useAuth } from './context/AuthContext';
 
-export default function Sidebar() {
+export default function Sidebar({ profileName }) {
+    const { user } = useAuth();
     function getNavClass({isActive}) {
         return isActive ? "active" : "";
     }
@@ -47,9 +49,9 @@ export default function Sidebar() {
 
             <div className="sidebar-footer">
                 <div className="sidebar-profile">
-                    <ProfileIcon profileName="AY" />
+                    <ProfileIcon profileName={profileName} />
                     <div className="profile-info">
-                        <p className="name">Aniket Yadav</p>
+                        <p className="name">{user.name}</p>
                         <p className="level">Curious mind · Level 1</p>
                     </div>
                 </div>

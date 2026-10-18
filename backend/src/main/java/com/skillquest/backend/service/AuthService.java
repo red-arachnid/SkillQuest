@@ -58,6 +58,6 @@ public class AuthService {
     }
 
     private UserResponse createUserResponse(User user) {
-        return new UserResponse(user.getId(), user.getName(), user.getEmail());
+        return new UserResponse(user.getId(), user.getName(), user.getEmail(), user.getUserXp(), user.getLastActiveSkill());
     }
 }

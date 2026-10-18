@@ -7,6 +7,8 @@ CREATE TABLE users (
     current_streak INT NOT NULL DEFAULT 0,
     longest_streak INT NOT NULL DEFAULT 0,
     last_active_date DATE NULL,
+    user_xp INT NOT NULL DEFAULT 0,
+    last_active_skill BIGINT NULL,
     CONSTRAINT uk_users_email UNIQUE (email)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
