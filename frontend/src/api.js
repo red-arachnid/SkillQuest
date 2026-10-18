@@ -7,6 +7,13 @@ export const tokenStore = {
     clear: () => localStorage.removeItem(TOKEN_KEY_NAME),
 }
 
+export class ApiError extends Error {
+    constructor(message, status) {
+        super(message);
+        this.status = status;
+    }
+}
+
 // On Function to write all type of api
 export async function api(path, {method = "GET", body } = {}) {
     const headers = {};
@@ -24,7 +31,7 @@ export async function api(path, {method = "GET", body } = {}) {
         });
     }
     catch {
-        throw new Error("Cannot reach the server...");
+        throw new ApiError("Cannot reach the server.", 0);
     }
 
     const data = await response.json().catch(() => null);
@@ -33,7 +40,7 @@ export async function api(path, {method = "GET", body } = {}) {
         if (response.status === 401 && !path.startsWith("/api/auth/login")) {
             window.dispatchEvent(new Event("auth:expired"));
         }
-        throw new Error(data?.message ?? "Something went wrong");
+        throw new ApiError(data?.message ?? "Something went wrong", response.status);
     }
     return data;
 }

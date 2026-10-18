@@ -1,0 +1,18 @@
+.explore-skills {
+
+}
+.explore-skills h3 {
+    font-family: var(--font1);
+    font-weight: 500;
+    font-size: 28px;
+    margin-bottom: 30px;
+}
+
+.skill-con {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px;
+}
+
+
+

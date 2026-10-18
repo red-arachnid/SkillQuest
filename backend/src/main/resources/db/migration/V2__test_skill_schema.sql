@@ -1,7 +1,7 @@
 
 
 INSERT INTO skills (id, slug, name, category, description, icon, difficulty, estimated_hours) VALUES 
-(1, 'davinci-resolve-beginner', 'DaVinci Resolve for Beginners', 'Video Editing', 'Master the core fundamentals of video editing using DaVinci Resolve. Learn project setup, media organization, rough cut assembly, transitions, basic color grading, audio cleanup, and final export settings.', 'film', 'BEGINNER', 14);
+(1, 'davinci-resolve-beginner', 'DaVinci Resolve for Beginners', 'Video Editing', 'Master the core fundamentals of video editing using DaVinci Resolve. Learn project setup, media organization, rough cut assembly, transitions, basic color grading, audio cleanup, and final export settings.', 'faFilm', 'BEGINNER', 14);
 
 
 INSERT INTO skill_modules (id, skill_id, title, position) VALUES

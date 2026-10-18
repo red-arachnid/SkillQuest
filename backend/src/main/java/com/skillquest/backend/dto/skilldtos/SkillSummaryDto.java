@@ -10,8 +10,8 @@ public record SkillSummaryDto(
     String description,
     String icon,
     Difficulty difficulty,
-    int estimatedHours
-    // String status,
-    // int doneTasks,
-    // int totalTasks
+    int estimatedHours,
+    String status,
+    int doneTasks,
+    int totalTasks
 ) {}

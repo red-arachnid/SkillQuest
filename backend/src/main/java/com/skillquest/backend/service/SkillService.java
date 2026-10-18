@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.skillquest.backend.dto.skilldtos.SkillSummaryDto;
+import com.skillquest.backend.model.Skill;
 import com.skillquest.backend.model.enums.SkillStatus;
 import com.skillquest.backend.repository.SkillRepository;
 
@@ -27,16 +28,25 @@ public class SkillService {
             pageable
         )
         .stream()
-        .map(skill -> new SkillSummaryDto(
-            skill.getId(),
-            skill.getSlug(),
-            skill.getName(),
-            skill.getCategory(),
-            skill.getDescription(),
-            skill.getIcon(),
-            skill.getDifficulty(),
-            skill.getEstimatedHours()
-        ))
-        .toList();
+        .map(projection -> {
+            Skill skill = projection.getSkill();
+            String status = projection.getStatus() != null ? projection.getStatus().name() : null;
+            int doneTasks = projection.getDoneTasks() != null ? projection.getDoneTasks() : null;
+            int totalTasks = projection.getTotalTasks();
+
+            return new SkillSummaryDto(
+                skill.getId(),
+                skill.getSlug(),
+                skill.getName(),
+                skill.getCategory(),
+                skill.getDescription(),
+                skill.getIcon(),
+                skill.getDifficulty(),
+                skill.getEstimatedHours(),
+                status,
+                doneTasks,
+                totalTasks
+            );
+        }).toList();
     }
 }
