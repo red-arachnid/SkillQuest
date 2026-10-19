@@ -9,9 +9,11 @@ import { useAuth } from '../../components/context/AuthContext';
 import { api } from '../../api';
 
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Explore() {
     const { user } = useAuth();
+    const navigate = useNavigate();
 
     const [skills, setSkills] = useState(null);
     const [activeSkill, setActiveSkill] = useState(null);
@@ -20,7 +22,6 @@ export default function Explore() {
         if (user.lastActiveSkill) return;
 
         const controller = new AbortController();
-        const { signal } = controller;
 
         api("/api/skills/browse", { method: "GET" })
             .then(skills => setSkills(skills))
@@ -32,7 +33,13 @@ export default function Explore() {
     }, [user]);
 
     function handleSkillCardOnClick(skill) {
-        setActiveSkill(skill);
+        if (skill.status == 'COMPLETED') return;
+        if (skill.status == null) {
+            setActiveSkill(skill);
+            return;
+        }
+
+        navigate('/learning');
     }
 
     return (
@@ -65,8 +72,28 @@ export default function Explore() {
 
 
 function ConfirmLearning({ skill, onCancel }) {
-    console.log(skill);
     if (!skill) return null;
+
+    const navigate = useNavigate();
+
+    async function startLearningSkill(skill) {
+        const body = {
+            skillId: skill.id
+        }
+
+        try {
+            await api("/api/user-skills/start", { method: "POST", body });
+            navigate('/learning');            
+        }
+        catch (e) {
+            // Show this error on the ui if have time :)
+            alert(e.message);
+        }
+        finally {
+            onCancel();
+        }
+    }
+
     return (
         <div className="confirm-learning-box">
             <div className="confirm-learning">
@@ -84,11 +111,11 @@ function ConfirmLearning({ skill, onCancel }) {
 
                     <div style={{color: "var(--ui1)"}}>
                         <FontAwesomeIcon icon={faBolt} />
-                        <p>{skill.xp} XP</p>
+                        <p>{skill.skillXp} XP</p>
                     </div>
                 </div>
 
-                <button className="confirm-button" >Start learning</button>
+                <button className="confirm-button" onClick={() => startLearningSkill(skill)}>Start learning</button>
             </div>
         </div>
     )

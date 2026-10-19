@@ -6,6 +6,7 @@ import com.skillquest.backend.model.enums.SkillStatus;
 public interface SkillSummaryProjection {
     Skill getSkill();
     SkillStatus getStatus();
+    Integer getSkillXp();
     Integer getDoneTasks();
     Integer getTotalTasks();
 }

@@ -1,7 +1,7 @@
 package com.skillquest.backend.model;
 
+import java.time.Instant;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -37,18 +37,18 @@ public class UserTask {
     @Column(name = "is_done", nullable = false)
     private boolean done = false;
 
-    private LocalDateTime completedAt;
+    private Instant completedAt;
 
     public Long getId() { return id; }
     public UserSkill getUserSkill() { return userSkill; }
     public SkillTask getTask() { return task; }
     public LocalDate getScheduledDate() { return scheduledDate; }
     public boolean isDone() { return done; }
-    public LocalDateTime getCompletedAt() { return completedAt; }
+    public Instant getCompletedAt() { return completedAt; }
 
     public void setUserSkill(UserSkill userSkill) { this.userSkill = userSkill; }
     public void setTask(SkillTask task) { this.task = task; }
     public void setScheduledDate(LocalDate scheduledDate) { this.scheduledDate = scheduledDate; }
     public void setDone(boolean done) { this.done = done; }
-    public void setCompletedAt(LocalDateTime completedAt) { this.completedAt = completedAt; }
+    public void setCompletedAt(Instant completedAt) { this.completedAt = completedAt; }
 }

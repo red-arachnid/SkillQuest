@@ -1,13 +1,12 @@
 package com.skillquest.backend.model;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
 
 import com.skillquest.backend.model.enums.SkillStatus;
-import com.skillquest.backend.model.enums.TaskFormat;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -47,17 +46,11 @@ public class UserSkill {
     @Column(nullable = false, columnDefinition = "varchar(20)")
     private SkillStatus status = SkillStatus.ACTIVE;
 
-    @Enumerated(EnumType.STRING)
-    @Column(columnDefinition = "varchar(20)")
-    private TaskFormat preferredFormat;
-
-    private Integer targetDays;
-
     @CreationTimestamp
     @Column(nullable = false, updatable = false)
-    private LocalDateTime startedAt;
+    private Instant startedAt = Instant.now();
 
-    private LocalDateTime completedAt;
+    private Instant completedAt;
 
     @OneToMany(mappedBy = "userSkill", cascade = CascadeType.ALL, orphanRemoval = true)
     @OrderBy("scheduledDate ASC, id ASC")
@@ -67,18 +60,14 @@ public class UserSkill {
     public User getUser() { return user; }
     public Skill getSkill() { return skill; }
     public SkillStatus getStatus() { return status; }
-    public TaskFormat getPreferredFormat() { return preferredFormat; }
-    public Integer getTargetDays() { return targetDays; }
-    public LocalDateTime getStartedAt() { return startedAt; }
-    public LocalDateTime getCompletedAt() { return completedAt; }
+    public Instant getStartedAt() { return startedAt; }
+    public Instant getCompletedAt() { return completedAt; }
     public List<UserTask> getTasks() { return tasks; }
 
     public void setUser(User user) { this.user = user; }
     public void setSkill(Skill skill) { this.skill = skill; }
     public void setStatus(SkillStatus status) { this.status = status; }
-    public void setPreferredFormat(TaskFormat preferredFormat) { this.preferredFormat = preferredFormat; }
-    public void setTargetDays(Integer targetDays) { this.targetDays = targetDays; }
-    public void setCompletedAt(LocalDateTime completedAt) { this.completedAt = completedAt; }
+    public void setCompletedAt(Instant completedAt) { this.completedAt = completedAt; }
 
     public void addTask(UserTask task) {
         tasks.add(task);

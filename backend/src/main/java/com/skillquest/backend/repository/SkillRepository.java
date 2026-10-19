@@ -15,6 +15,10 @@ public interface SkillRepository extends JpaRepository<Skill, Long> {
     
     @Query ("""
         SELECT s AS skill, us.status AS status, (
+            SELECT SUM(taskXp) FROM SkillModule sm
+            JOIN SkillTask st ON st.module = sm
+            WHERE sm.skill = s 
+        ) AS skillXp, (
             SELECT COUNT(st) FROM SkillModule sm
             JOIN SkillTask st ON st.module = sm
             WHERE sm.skill = s

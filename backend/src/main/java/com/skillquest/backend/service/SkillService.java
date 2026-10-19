@@ -31,6 +31,7 @@ public class SkillService {
         .map(projection -> {
             Skill skill = projection.getSkill();
             String status = projection.getStatus() != null ? projection.getStatus().name() : null;
+            int skillXp = projection.getSkillXp();
             int doneTasks = projection.getDoneTasks() != null ? projection.getDoneTasks() : null;
             int totalTasks = projection.getTotalTasks();
 
@@ -44,6 +45,7 @@ public class SkillService {
                 skill.getDifficulty(),
                 skill.getEstimatedHours(),
                 status,
+                skillXp,
                 doneTasks,
                 totalTasks
             );

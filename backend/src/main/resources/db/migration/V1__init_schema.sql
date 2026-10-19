@@ -40,6 +40,7 @@ CREATE TABLE skill_tasks (
     position INT NOT NULL,
     est_minutes INT NOT NULL DEFAULT 0,
     format VARCHAR(20) NOT NULL DEFAULT 'READ',
+    task_xp INT NOT NULL DEFAULT 0,
     CONSTRAINT fk_tasks_module FOREIGN KEY (module_id) REFERENCES skill_modules (id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -60,8 +61,6 @@ CREATE TABLE user_skills (
     user_id BIGINT NOT NULL,
     skill_id BIGINT NOT NULL,
     status VARCHAR(20) NOT NULL DEFAULT 'ACTIVE',
-    preferred_format VARCHAR(20) NULL,
-    target_days INT NULL,
     started_at DATETIME(6) NOT NULL,
     completed_at DATETIME(6) NULL,
     CONSTRAINT uk_user_skill UNIQUE (user_id, skill_id),

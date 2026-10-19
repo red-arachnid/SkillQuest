@@ -41,6 +41,9 @@ public class SkillTask {
     @Column(nullable = false, columnDefinition = "varchar(20)")
     private TaskFormat format = TaskFormat.READ;
 
+    @Column(nullable = false)
+    private int taskXp = 0;
+
     public Long getId() { return id; }
     public SkillModule getModule() { return module; }
     public String getTitle() { return title; }
@@ -48,6 +51,7 @@ public class SkillTask {
     public int getPosition() { return position; }
     public int getEstMinutes() { return estMinutes; }
     public TaskFormat getFormat() { return format; }
+    public int getTaskXp() { return taskXp; }
 
     public void setModule(SkillModule module) { this.module = module; }
     public void setTitle(String title) { this.title = title; }
@@ -55,4 +59,5 @@ public class SkillTask {
     public void setPosition(int position) { this.position = position; }
     public void setEstMinutes(int estMinutes) { this.estMinutes = estMinutes; }
     public void setFormat(TaskFormat format) { this.format = format; }
+    public void setTaskXp(int taskXp) { this.taskXp = taskXp; }
 }
