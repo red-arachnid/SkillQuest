@@ -1,6 +1,7 @@
 package com.skillquest.backend.dto.skilldtos;
 
 import com.skillquest.backend.model.enums.Difficulty;
+import com.skillquest.backend.model.enums.SkillStatus;
 
 public record SkillSummaryDto(
     Long id,
@@ -11,7 +12,7 @@ public record SkillSummaryDto(
     String icon,
     Difficulty difficulty,
     int estimatedHours,
-    String status,
+    SkillStatus status,
     int skillXp,
     int doneTasks,
     int totalTasks

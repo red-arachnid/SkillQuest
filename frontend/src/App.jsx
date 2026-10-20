@@ -24,7 +24,12 @@ export default function App() {
 }
 
 function ProtectedRoute({ children }) {
-  const { user } = useAuth();
+  const { user, isLoading } = useAuth();
+
+  if (isLoading) {
+    return null;
+  }
+  
   return user ? children : <Navigate to="/login" replace />
 }
 

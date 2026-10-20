@@ -5,6 +5,7 @@ const AuthContext = createContext(null);
 
 export function AuthProvider({children}) {
     const [user, setUser] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
 
     const logout = useCallback(() => {
         tokenStore.clear();
@@ -22,7 +23,8 @@ export function AuthProvider({children}) {
         if (!tokenStore.get()) return;
         api("/api/auth/me")
             .then(user => setUser(user))
-            .catch(() => tokenStore.clear());
+            .catch(() => tokenStore.clear())
+            .finally(() => setIsLoading(false));
     }, []);
 
     async function login(email, password) {
@@ -38,7 +40,7 @@ export function AuthProvider({children}) {
     }
 
     return (
-        <AuthContext.Provider value={{user, login, signup, logout }}>
+        <AuthContext.Provider value={{user, login, signup, logout, isLoading }}>
             {children}
         </AuthContext.Provider>
     )

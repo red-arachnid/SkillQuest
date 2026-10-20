@@ -1,9 +1,13 @@
 package com.skillquest.backend.service;
 
+import java.time.Instant;
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.skillquest.backend.dto.skilldtos.StartSkillRequest;
+import com.skillquest.backend.dto.skilldtos.UserSkillSummaryDto;
 import com.skillquest.backend.exception.ApiException;
 import com.skillquest.backend.model.Skill;
 import com.skillquest.backend.model.User;
@@ -41,5 +45,38 @@ public class UserSkillService {
         userSkill.setStatus(SkillStatus.ACTIVE);
 
         userSkillRepository.save(userSkill);
+    }
+
+    public List<UserSkillSummaryDto> getAllSkillOfUser(String userEmail) {
+        User user = userRepository.findByEmail(userEmail)
+            .orElseThrow(() -> new ApiException(HttpStatus.UNAUTHORIZED, "User no longer exists"));
+
+        return userSkillRepository.getAllSkillsOfUser(user.getId())
+        .stream().map(projection -> {
+            Long id = projection.getId();
+            Skill skill = projection.getSkill();
+            SkillStatus status = projection.getStatus();
+            Instant startedAt = projection.getStartedAt();
+            Instant completedAt = projection.getCompletedAt();
+            int doneTasks = projection.getDoneTasks() != null ? projection.getDoneTasks() : 0;
+            int totalTasks = projection.getTotalTasks();
+
+            return new UserSkillSummaryDto(
+                id,
+                skill.getId(),
+                skill.getSlug(),
+                skill.getName(),
+                skill.getCategory(),
+                skill.getDescription(),
+                skill.getIcon(),
+                skill.getDifficulty(),
+                skill.getEstimatedHours(),
+                status,
+                startedAt,
+                completedAt,
+                doneTasks,
+                totalTasks
+            );
+        }).toList();
     }
 }

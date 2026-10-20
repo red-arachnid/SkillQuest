@@ -30,7 +30,7 @@ public class SkillService {
         .stream()
         .map(projection -> {
             Skill skill = projection.getSkill();
-            String status = projection.getStatus() != null ? projection.getStatus().name() : null;
+            SkillStatus status = projection.getStatus() != null ? projection.getStatus() : null;
             int skillXp = projection.getSkillXp();
             int doneTasks = projection.getDoneTasks() != null ? projection.getDoneTasks() : null;
             int totalTasks = projection.getTotalTasks();
