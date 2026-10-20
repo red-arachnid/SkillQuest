@@ -1,0 +1,24 @@
+.skill-learning {
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: minmax(0, 7.5fr) minmax(0, 2.5fr);
+    gap: 15px;
+}
+
+.skill-learning .main {
+    height: auto;
+    display: block;
+}
+
+.skill-learning .stats {
+    background-color: yellow;
+}
+
+.main h3 {
+    font-family: var(--font1);
+    font-size: 24px;
+    font-weight: 500;
+    margin: 34px 0;
+}
+

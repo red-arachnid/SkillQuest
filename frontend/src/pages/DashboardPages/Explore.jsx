@@ -10,23 +10,24 @@ import { api } from '../../api';
 
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import SkillLearning from './SkillLearning';
 
 export default function Explore() {
     const { user } = useAuth();
     const navigate = useNavigate();
 
+    let testSkill;
+
     const [skills, setSkills] = useState(null);
-    const [activeSkill, setActiveSkill] = useState(null);
+    const [activeSkill, setActiveSkill] = useState(user.lastActiveSkill);
 
     useEffect(() => {
-        if (user.lastActiveSkill) return;
-
         const controller = new AbortController();
 
         api("/api/skills/browse", { method: "GET" })
             .then(skills => setSkills(skills))
             .catch(() => setSkills(null));
-        
+
         return () => {
             controller.abort();
         };
@@ -44,11 +45,13 @@ export default function Explore() {
 
     return (
         <div className="explore-page">
-            { activeSkill && <ConfirmLearning skill={activeSkill} onCancel={() => setActiveSkill(null)}/>}
+            {/* { activeSkill && <ConfirmLearning skill={activeSkill} onCancel={() => setActiveSkill(null)}/>} */}
+
+
             <PageHeading subHeading={`Hey ${user.name}! Pick a skill, Let the adventure begin`} />
             <Seachbar />
 
-            {skills && 
+            {/* {skills && 
                 <div className="explore-skills">
                     <h3>Featured Skills</h3>
 
@@ -65,7 +68,9 @@ export default function Explore() {
                         ))}
                     </div>
                 </div>
-            }
+            } */}
+
+            <SkillLearning skill={(skills) ? skills[6] : null} />
         </div>
     );
 }

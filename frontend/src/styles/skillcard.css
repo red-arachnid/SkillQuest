@@ -21,6 +21,16 @@
     transform: translateY(-2px);
 }
 
+.skill-card .icon {
+    background-color: var(--ui6);
+    border: 2px solid var(--border1);
+    color: var(--ui7);
+    border-radius: 8px;
+    padding: 8px 6px;
+    box-sizing: 0px 1px 2px var(--overlay);
+    transform: rotate(-3deg);
+}
+
 .skill-card .info {
     flex: 1 1 0;
 }

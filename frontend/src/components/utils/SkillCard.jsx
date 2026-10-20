@@ -7,7 +7,7 @@ import SkillIcon from './SkillIcon';
 export default function SkillCard({ title, subtitle, icon, buttonText, onClick}) {
     return (
         <div className="skill-card">
-            <SkillIcon iconName={icon} />
+            <SkillIcon iconName={icon} className="icon" />
             <div className="info">
                 <h6>{title}</h6>
                 <p>{subtitle}</p>

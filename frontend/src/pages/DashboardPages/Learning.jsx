@@ -38,7 +38,7 @@ export default function Learning() {
                                 title={userSkill.name}
                                 subtitle={`${userSkill.doneTasks} completed out of ${userSkill.totalTasks}`}
                                 icon={userSkill.icon}
-                                buttonText="Continue Learning"
+                                buttonText="Continue"
                                 onClick={() => {alert("LEARNING SKILL")}}
                             />
                         ))}
