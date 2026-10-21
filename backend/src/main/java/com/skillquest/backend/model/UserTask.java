@@ -32,8 +32,6 @@ public class UserTask {
     @JoinColumn(name = "task_id", nullable = false)
     private SkillTask task;
 
-    private LocalDate scheduledDate;
-
     @Column(name = "is_done", nullable = false)
     private boolean done = false;
 
@@ -42,13 +40,11 @@ public class UserTask {
     public Long getId() { return id; }
     public UserSkill getUserSkill() { return userSkill; }
     public SkillTask getTask() { return task; }
-    public LocalDate getScheduledDate() { return scheduledDate; }
     public boolean isDone() { return done; }
     public Instant getCompletedAt() { return completedAt; }
 
     public void setUserSkill(UserSkill userSkill) { this.userSkill = userSkill; }
     public void setTask(SkillTask task) { this.task = task; }
-    public void setScheduledDate(LocalDate scheduledDate) { this.scheduledDate = scheduledDate; }
     public void setDone(boolean done) { this.done = done; }
     public void setCompletedAt(Instant completedAt) { this.completedAt = completedAt; }
 }

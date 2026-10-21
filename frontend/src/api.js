@@ -17,21 +17,26 @@ export class ApiError extends Error {
 // On Function to write all type of api
 export async function api(path, {method = "GET", body } = {}) {
     const headers = {};
-    if (body) headers["Content-Type"] = "application/json";
+    headers["Content-Type"] = "application/json";
     
     const token = tokenStore.get();
     if (token) headers.Authorization = `Bearer ${token}`;
+
+    const options = {
+        method,
+        headers,
+    };
+
+    if (method !== "GET" && method !== 'HEAD' && body) {
+        options.body = JSON.stringify(body);
+    }
     
     let response;
     try {
-        response = await fetch(`${BASE}${path}`, {
-            method,
-            headers,
-            body: body ? JSON.stringify(body) : undefined,
-        });
+        response = await fetch(`${BASE}${path}`, options);
     }
-    catch {
-        throw new ApiError("Cannot reach the server.", 0);
+    catch (e) {
+        throw new ApiError("Cannot reach the server. " + e, 0);
     }
 
     const data = await response.json().catch(() => null);

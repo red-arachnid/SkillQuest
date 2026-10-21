@@ -18,7 +18,7 @@ export default function App() {
         <Route path="learning" element={<Learning />} />
       </Route>
 
-      <Route path="*" element={<ProtectedRoute><Navigate to="/expolre" replace/></ProtectedRoute>} />
+      <Route path="*" element={<ProtectedRoute><Navigate to="/explore" replace /></ProtectedRoute>} />
     </Routes>
   );
 }

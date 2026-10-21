@@ -72,7 +72,6 @@ CREATE TABLE user_tasks (
     id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     user_skill_id BIGINT NOT NULL,
     task_id BIGINT NOT NULL,
-    scheduled_date DATE NULL,
     is_done BIT(1) NOT NULL DEFAULT b'0',
     completed_at DATETIME(6) NULL,
     CONSTRAINT uk_user_task UNIQUE (user_skill_id, task_id),

@@ -1,4 +1,4 @@
-import Logo from '../../public/logo.svg?react';
+import Logo from '../icons/logo.svg?react';
 import '../styles/brand.css'
 
 export default function Brand({ size = 'md', className = ''}) {

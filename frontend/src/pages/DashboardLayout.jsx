@@ -8,7 +8,6 @@ export default function DashboardLayout() {
     const { user } = useAuth();
     const profileName = getProfileName(user.name);
 
-
     function getProfileName(username) {
         const words = username.trim().split(/\s+/).filter(Boolean);
         if (words.length === 0) return "";
