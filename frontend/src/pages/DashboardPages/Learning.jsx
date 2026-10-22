@@ -5,8 +5,10 @@ import Searchbar from "../../components/utils/Seachbar";
 import { useAuth } from '../../components/context/AuthContext';
 import { api } from '../../api';
 import SkillCard from '../../components/utils/SkillCard';
+import { useNavigate } from 'react-router-dom';
 
 export default function Learning() {
+    const navigate = useNavigate();
     const { user } = useAuth();
     const [learningSkills, setLearningSkills] = useState(null);
 
@@ -20,7 +22,15 @@ export default function Learning() {
         return () => {
             controller.abort();
         };
-    }, [user])
+    }, [user]);
+
+    function handleOnContinue(userSkill) {
+        navigate('/explore', {
+            state: {
+                skillId: userSkill.skillId
+            }
+        });
+    }
 
     return (
         <div className="my-learning-page">
@@ -39,7 +49,7 @@ export default function Learning() {
                                 subtitle={`${userSkill.doneTasks} completed out of ${userSkill.totalTasks}`}
                                 icon={userSkill.icon}
                                 buttonText="Continue"
-                                onClick={() => {alert("LEARNING SKILL")}}
+                                onClick={() => {handleOnContinue(userSkill)}}
                             />
                         ))}
                     </div>

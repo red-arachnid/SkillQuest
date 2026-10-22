@@ -5,21 +5,21 @@ import { faClock } from '@fortawesome/free-regular-svg-icons';
 import PageHeading from "../../components/utils/PageHeading";
 import Seachbar from '../../components/utils/Seachbar';
 import SkillCard from '../../components/utils/SkillCard';
+import SkillLearning from './SkillLearning';
+
 import { useAuth } from '../../components/context/AuthContext';
 import { api } from '../../api';
 
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import SkillLearning from './SkillLearning';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 export default function Explore() {
     const { user } = useAuth();
-    const navigate = useNavigate();
-
-    let testSkill;
+    const location = useLocation();
 
     const [skills, setSkills] = useState(null);
-    const [activeSkill, setActiveSkill] = useState(user.lastActiveSkill);
+    const [confirmSkill, setConfirmSkill] = useState(null);
+    const [currentLearning, setCurrentLearning] = useState(user.lastActiveSkill);
 
     useEffect(() => {
         const controller = new AbortController();
@@ -33,24 +33,34 @@ export default function Explore() {
         };
     }, [user]);
 
+    useEffect(() => {
+        const skillId = location.state?.skillId ?? null;
+        if (skillId != null) {
+            setCurrentLearning(skills?.find(skill => skill.id === skillId));
+        }
+    }, [skills]);
+
     function handleSkillCardOnClick(skill) {
         if (skill.status == 'COMPLETED') return;
         if (skill.status == null) {
-            setActiveSkill(skill);
+            setConfirmSkill(skill);
             return;
         }
-
-        navigate('/learning');
+        setCurrentLearning(skill);
     }
 
     return (
         <div className="explore-page">
-            { activeSkill && <ConfirmLearning skill={activeSkill} onCancel={() => setActiveSkill(null)}/>}
+            { confirmSkill && <ConfirmLearning skill={confirmSkill} setCurrentLearning={setCurrentLearning} onCancel={() => setConfirmSkill(null)}/>}
 
             <PageHeading subHeading={`Hey ${user.name}! Pick a skill, Let the adventure begin`} />
             <Seachbar />
 
-            {skills && 
+            { currentLearning && 
+                <SkillLearning skill={currentLearning} />
+            }
+
+            { !currentLearning && skills && 
                 <div className="explore-skills">
                     <h3>Featured Skills</h3>
 
@@ -68,15 +78,12 @@ export default function Explore() {
                     </div>
                 </div>
             }
-
         </div>
     );
 }
 
 
-function ConfirmLearning({ skill, onCancel }) {
-    if (!skill) return null;
-
+function ConfirmLearning({ skill, setCurrentLearning, onCancel }) {
     const navigate = useNavigate();
 
     async function startLearningSkill(skill) {
@@ -86,7 +93,7 @@ function ConfirmLearning({ skill, onCancel }) {
 
         try {
             await api("/api/user-skills/start", { method: "POST", body });
-            navigate('/learning');            
+            setCurrentLearning(skill);
         }
         catch (e) {
             // Show this error on the ui if have time :)

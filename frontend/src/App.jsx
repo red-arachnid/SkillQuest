@@ -7,6 +7,7 @@ import Explore from './pages/DashboardPages/Explore';
 import Learning from './pages/DashboardPages/Learning';
 
 export default function App() {
+
   return (
     <Routes>
       <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />

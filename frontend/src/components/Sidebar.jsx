@@ -1,5 +1,5 @@
 import '../styles/sidebar.css';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import Brand from './Brand';
 import { faCompass } from '@fortawesome/free-regular-svg-icons';
 import { faBookOpen, faBullseye, faGraduationCap, faBolt, faSquareArrowUpRight} from '@fortawesome/free-solid-svg-icons'
@@ -9,6 +9,9 @@ import { useAuth } from './context/AuthContext';
 
 export default function Sidebar({ profileName }) {
     const { user } = useAuth();
+    const naviagate = useNavigate();
+    const location = useLocation();
+
     function getNavClass({isActive}) {
         return isActive ? "active" : "";
     }
@@ -22,7 +25,7 @@ export default function Sidebar({ profileName }) {
                 <div className="con">
                     <NavLink to="/explore" className={getNavClass}>
                         <FontAwesomeIcon icon={faCompass}/>
-                        <p>Explore skills</p>
+                        <p style={{pointerEvents: "none"}}>Explore skills</p>
                     </NavLink>
                     <NavLink to="/learning" className={getNavClass}>
                         <FontAwesomeIcon icon={faBookOpen}/>
