@@ -1,0 +1,23 @@
+skillpath/
+├── backend/                      (Java, Spring Boot)
+│   ├── src/main/java/com/skillpath/
+│   │   ├── controller/           (API endpoints)
+│   │   ├── service/              (the logic: plan, streak, XP)
+│   │   ├── repository/           (talks to database)
+│   │   ├── model/                (User, Skill, Lesson...)
+│   │   ├── security/             (login and tokens)
+│   │   └── SkillPathApplication.java
+│   ├── src/main/resources/
+│   │   ├── db/migration/         (Flyway files: V1__create_tables.sql ...)
+│   │   └── application.properties
+│   └── pom.xml
+├── frontend/                     (React)
+│   ├── src/
+│   │   ├── pages/
+│   │   ├── components/
+│   │   ├── api/                  (functions that call the backend)
+│   │   ├── styles/
+│   │   └── App.jsx
+│   └── package.json
+├── content/                      (lessons in JSON/SQL, with source links)
+└── README.md
