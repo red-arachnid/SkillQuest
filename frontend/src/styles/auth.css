@@ -136,13 +136,13 @@ form button {
     border-radius: 12px;
     font-weight: 700;
     border: none;
-    box-shadow: 0px 4px 0px hsl(48, 100%, 50%);
+    box-shadow: 0px 4px 0px var(--ui5-dark);
     cursor: pointer;
     transition: box-shadow 0.3s ease
                 transform 0.3s ease;
 }
 form button:active {
-    box-shadow: 0px 0px 0px hsl(48, 100%, 50%);
+    box-shadow: none;
     transform: translateY(4px);
 }
 form button:disabled {

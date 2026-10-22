@@ -51,7 +51,7 @@ export default function Explore() {
 
     return (
         <div className="explore-page">
-            { confirmSkill && <ConfirmLearning skill={confirmSkill} setCurrentLearning={setCurrentLearning} onCancel={() => setConfirmSkill(null)}/>}
+            { confirmSkill && <ConfirmLearningDialog skill={confirmSkill} setCurrentLearning={setCurrentLearning} onCancel={() => setConfirmSkill(null)}/>}
 
             <PageHeading subHeading={`Hey ${user.name}! Pick a skill, Let the adventure begin`} />
             <Seachbar />
@@ -83,9 +83,7 @@ export default function Explore() {
 }
 
 
-function ConfirmLearning({ skill, setCurrentLearning, onCancel }) {
-    const navigate = useNavigate();
-
+function ConfirmLearningDialog({ skill, setCurrentLearning, onCancel }) {
     async function startLearningSkill(skill) {
         const body = {
             skillId: skill.id

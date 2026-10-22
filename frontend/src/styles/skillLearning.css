@@ -22,3 +22,90 @@
     margin: 34px 0;
 }
 
+.learn-skill-box {
+    position: fixed;
+    top: 0; 
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: var(--overlay);
+    z-index: 300;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.learn-skill {
+    position: relative;
+    background-color: var(--color1);
+    width: 910px;
+
+    border-radius: 8px;
+    padding: 24px;
+}
+
+.learn-skill .close {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    border: none;
+    background-color: transparent;
+    color: var(--text-secondary);
+}
+.learn-skill .close:hover {
+    color: var(--text-primary);
+}
+
+.learn-skill h1 {
+    font-family: var(--font1);
+    color: var(--text-primary);
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+.learn-skill .description {
+    font-family: var(--font1);
+    font-size: 18px;
+    color: var(--text-secondary);
+    margin-bottom: 14px;
+}
+
+.learn-skill .resource {
+    display: block;
+    padding: 4px 8px;
+    margin-bottom: 14px;
+    text-align: center;
+    font-family: var(--font2);
+    font-weight: 700;
+    color: var(--ui1);
+    font-size: 20px;
+
+    border: 2px solid var(--ui1);
+    border-radius: 8px;
+}
+
+.learn-skill .done {
+    width: 100%;
+    padding: 4px 8px;
+    font-size: 18px;
+    font-family: var(--font2);
+    font-weight: 600;
+    color: var(--text-primary);
+    background-color: var(--ui5);
+
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0px 5px 1px var(--ui5-dark);
+    transition: transform 0.1s ease,
+                box-shadow 0.1s ease;
+}
+.learn-skill .done:active {
+    box-shadow: none;
+    transform: translateY(4px);
+}
+.learn-skill .done:disabled {
+    transform: translateY(4px);
+    box-shadow: none;
+    color: grey;
+    pointer-events: none;
+}
