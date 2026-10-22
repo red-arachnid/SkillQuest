@@ -1,5 +1,5 @@
 const BASE = "http://localhost:8080";   //! Change it later
-const TOKEN_KEY_NAME = "skillearn_token";
+const TOKEN_KEY_NAME = "skillquest_token";
 
 export const tokenStore = {
     get: () => localStorage.getItem(TOKEN_KEY_NAME),

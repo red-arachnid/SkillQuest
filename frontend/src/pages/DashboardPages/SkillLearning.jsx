@@ -4,16 +4,18 @@ import SkillInfo from '../../components/utils/SkillInfo';
 import SkillModule from '../../components/utils/SkillModule';
 import { api } from '../../api';
 import { useAuth } from '../../components/context/AuthContext';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 
 export default function SkillLearning({ skill }) {
+    const [skillModules, setSkillModules] = useState(null);
+
     useEffect(() => {
         if (!skill) return;
 
         const body = { skillId: skill.id }
         api(`/api/skill-module/${skill.id}`, { method: "GET", body })
-            .then(modules => console.log(modules))
+            .then(modules => setSkillModules(modules))
             .catch((e) => console.log(e));
 
     }, [skill]);
@@ -27,7 +29,11 @@ export default function SkillLearning({ skill }) {
 
                 <h3>Your Learning path</h3>
 
-                {/* <SkillModule skillId={skill.id} /> */}
+                {skillModules &&
+                    skillModules.map(skillModule => (
+                        <SkillModule key={skillModule.id} skillModule={skillModule} />
+                    ))
+                }
             </div>
 
             <div className="stats">

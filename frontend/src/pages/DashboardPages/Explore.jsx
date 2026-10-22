@@ -47,11 +47,10 @@ export default function Explore() {
         <div className="explore-page">
             { activeSkill && <ConfirmLearning skill={activeSkill} onCancel={() => setActiveSkill(null)}/>}
 
-
             <PageHeading subHeading={`Hey ${user.name}! Pick a skill, Let the adventure begin`} />
             <Seachbar />
 
-            {/* {skills && 
+            {skills && 
                 <div className="explore-skills">
                     <h3>Featured Skills</h3>
 
@@ -68,9 +67,8 @@ export default function Explore() {
                         ))}
                     </div>
                 </div>
-            } */}
+            }
 
-            <SkillLearning skill={(skills) ? skills[6] : null} />
         </div>
     );
 }

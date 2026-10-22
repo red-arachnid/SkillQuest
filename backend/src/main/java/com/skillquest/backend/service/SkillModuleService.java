@@ -61,6 +61,7 @@ public class SkillModuleService {
                             skillTask.getTitle(),
                             skillTask.getDescription(),
                             skillTask.getEstMinutes(),
+                            skillTask.getFormat(),
                             skillTask.getTaskXp(),
                             isDone,
                             completedAt,

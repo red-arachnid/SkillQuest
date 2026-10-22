@@ -31,12 +31,14 @@ export function AuthProvider({children}) {
         const data = await api("/api/auth/login", {method: "POST", body: { email, password } });
         tokenStore.set(data.token);
         setUser(data.user);
+        setIsLoading(false);
     }
 
     async function signup(name, email, password) {
         const data = await api("/api/auth/signup", {method: "POST", body: { name, email, password } });
         tokenStore.set(data.token);
         setUser(data.user);
+        setIsLoading(false);
     }
 
     return (
