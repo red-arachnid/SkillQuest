@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import SkillInfo from '../../components/utils/SkillInfo';
 import SkillModule from '../../components/utils/SkillModule';
 import { api } from '../../api';
+import { useAuth } from '../../components/context/AuthContext';
 import { useEffect, useState } from 'react';
 import { faBolt, faUpRightFromSquare, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { faClock } from '@fortawesome/free-regular-svg-icons';
@@ -46,6 +47,7 @@ export default function SkillLearning({ skill }) {
 }
 
 function TaskDetails({ skill, task, setShowTaskDetail }) {
+    const { refreshUserData } = useAuth();
     const [loading, setLoading] = useState(false);
     
     async function onTaskComplete() {
@@ -59,6 +61,7 @@ function TaskDetails({ skill, task, setShowTaskDetail }) {
         try {
             await api('/api/user-task/complete', { method: "POST", body });
             setShowTaskDetail(null);
+            refreshUserData();
         } 
         catch (e) {
             // Add UI if no other important task is left

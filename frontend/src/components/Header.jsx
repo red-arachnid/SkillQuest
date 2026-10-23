@@ -1,5 +1,5 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '../styles/header.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ProfileIcon from './utils/ProfileIcon';
 import { faBell } from '@fortawesome/free-regular-svg-icons'
 import { faFireFlameCurved, faBolt } from '@fortawesome/free-solid-svg-icons'
@@ -20,14 +20,14 @@ export default function Header({ profileName }) {
                     icon={faFireFlameCurved} 
                     iconColor={(streak > 0) ? "var(--ui1)" : "hsl(3, 14%, 29%)"} 
                     text={(streak > 1) ? `${streak} days streak` : `${streak} day streak`}
-                    backgroundColor="var(--ui6)"
+                    backgroundColor="var(--ui5)"
                 />
 
                 <StyledInfo 
                     icon={faBolt} 
                     iconColor="var(--ui1)" 
                     text={`${user.userXp} XP`} 
-                    backgroundColor="var(--ui5)"
+                    backgroundColor="var(--ui2)"
                 />
 
                 <div className="bar"></div>

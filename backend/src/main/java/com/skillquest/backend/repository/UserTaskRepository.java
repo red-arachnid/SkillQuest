@@ -4,5 +4,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.skillquest.backend.model.UserTask;
 
 public interface UserTaskRepository extends JpaRepository<UserTask, Long> {
-    
+    boolean existsByUserSkillIdAndTaskId(Long skillId, Long taskId);
 }

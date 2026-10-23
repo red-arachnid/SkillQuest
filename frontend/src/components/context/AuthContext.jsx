@@ -44,8 +44,25 @@ export function AuthProvider({children}) {
         setIsLoading(false);
     }
 
+    async function refreshUserData() {
+        try {
+            const data = await api('/api/auth/me');
+            setUser(data);
+        }
+        catch (e) {
+            console.log("Failed to refresh user data: " + e);
+        }
+    }
+
+    async function updateUserData(partialData) {
+        setUser(prev => {
+            if (!prev) return null;
+            return { ...prev, ...partialData };
+        });
+    }
+
     return (
-        <AuthContext.Provider value={{user, login, signup, logout, isLoading }}>
+        <AuthContext.Provider value={{user, login, signup, logout, isLoading, refreshUserData, updateUserData }}>
             {children}
         </AuthContext.Provider>
     )
