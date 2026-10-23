@@ -5,5 +5,6 @@ public record UserResponse(
     String name, 
     String email, 
     int userXp,
+    int currentStreak,
     Long lastActiveSkill
 ) {}

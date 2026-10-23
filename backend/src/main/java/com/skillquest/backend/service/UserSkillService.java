@@ -20,18 +20,17 @@ import com.skillquest.backend.repository.UserSkillRepository;
 @Service 
 public class UserSkillService {
     private final UserSkillRepository userSkillRepository;
-    private final UserRepository userRepository;
+    private final UserService userService;
     private final SkillRepository skillRepository;
 
-    public  UserSkillService(UserSkillRepository userSkillRepository, UserRepository userRepository, SkillRepository skillRepository) {
+    public  UserSkillService(UserSkillRepository userSkillRepository, UserService userService, SkillRepository skillRepository) {
         this.userSkillRepository = userSkillRepository;
-        this.userRepository = userRepository;
+        this.userService = userService;
         this.skillRepository = skillRepository;
     }
 
     public void startLearningSkill(String userEmail, StartSkillRequest request) {
-        User user = userRepository.findByEmail(userEmail)
-            .orElseThrow(() -> new ApiException(HttpStatus.UNAUTHORIZED, "User no longer exists"));
+        User user = userService.getUser(userEmail);
         
         if (userSkillRepository.existsByUserIdAndSkillId(user.getId(), request.skillId())) {
             throw new ApiException(HttpStatus.BAD_REQUEST , "User is already learning or has completed this skill.");
@@ -48,8 +47,7 @@ public class UserSkillService {
     }
 
     public List<UserSkillSummaryDto> getAllSkillOfUser(String userEmail) {
-        User user = userRepository.findByEmail(userEmail)
-            .orElseThrow(() -> new ApiException(HttpStatus.UNAUTHORIZED, "User no longer exists"));
+        User user = userService.getUser(userEmail);
 
         return userSkillRepository.getAllSkillsOfUser(user.getId())
         .stream().map(projection -> {

@@ -1,0 +1,118 @@
+
+.heatmap-card {
+    width: 100%;
+    background-color: var(--ui5);
+    padding: 24px;
+    border-radius: 8px;
+    border: 1px solid var(--border1);
+    box-shadow: 1px 2px 1px var(--overlay);
+    font-family: var(--font2);
+}
+
+.heatmap-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+    gap: 16px;
+}
+
+.heatmap-header .icon {
+    background-color: var(--ui4);
+    border-radius: 8px;
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ui1);
+}
+
+.heatmap-header .text h2 {
+    font-size: 24px;
+    font-family: var(--font1);
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.heatmap-header .text p {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.heatmap {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.heatmap .weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--text-primary);
+}
+
+.heatmap .days-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+    justify-items: center;
+}
+
+.heatmap .day-circle {
+    width: 32px;
+    height: 32px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.heatmap .day-circle.empty-slot {
+    background-color: transparent;
+}
+.heatmap .day-circle.inactive {
+    background-color: var(--ui6);
+}
+
+.heatmap .day-circle.active-1 {
+    background-color: hsl(3, 63%, 64%);
+}
+.heatmap .day-circle.active-2 {
+    background-color: hsl(3, 63%, 59%);
+}
+.heatmap .day-circle.active-3 {
+    background-color: hsl(3, 63%, 53%);
+}
+.heatmap .day-circle.active-4 {
+    background-color: var(--ui1);
+}
+
+@media (max-width: 1570px) {
+    .heatmap .day-circle {
+        height: 28px;
+        width: 28px;
+        border-radius: 12px;
+    }
+}
+
+@media (max-width: 1440px) {
+    .heatmap .day-circle {
+        height: 24px;
+        width: 24px;
+        border-radius: 8px;
+    }
+}
+
+@media (max-width: 1330px) {
+    .heatmap .day-circle {
+        height: 18px;
+        width: 18px;
+        border-radius: 6px;
+    }
+}

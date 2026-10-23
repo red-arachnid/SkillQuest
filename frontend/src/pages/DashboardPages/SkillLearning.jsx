@@ -8,11 +8,14 @@ import { useEffect, useMemo, useState } from 'react';
 import { faBolt, faUpRightFromSquare, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { faClock } from '@fortawesome/free-regular-svg-icons';
 import ProgressCard from '../../components/utils/ProgressCard';
-
+import ActivityHeatmap from '../../components/utils/ActivityHeatmap';
 
 export default function SkillLearning({ skill }) {
+    const { user } = useAuth();
+
     const [skillModules, setSkillModules] = useState(null);
     const [showTaskDetail, setShowTaskDetail] = useState(null);
+    const [heatmapData, setHeatmapData] = useState(null);
 
     const earnedXp = useMemo(() => {
         if (!skillModules) return 0;
@@ -40,6 +43,12 @@ export default function SkillLearning({ skill }) {
         
     }, [skill, showTaskDetail]);
 
+    useEffect(() => {
+        api('/api/activity/heatmap')
+            .then(data => setHeatmapData(data))
+            .catch(e => console.log("Error fetching heatmap data: " + e));
+    }, [user]);
+
     return (
         <div className="skill-learning">
             { showTaskDetail && <TaskDetails skill={skill} task={showTaskDetail} setShowTaskDetail={setShowTaskDetail} /> }
@@ -58,6 +67,8 @@ export default function SkillLearning({ skill }) {
 
             <div className="stats">
                 <ProgressCard totalTasks={skill.totalTasks} completedTasks={skill.doneTasks} xpEarned={earnedXp} />
+
+                { heatmapData && <ActivityHeatmap heatmapData={heatmapData} /> }
             </div>
         </div>
     ); 

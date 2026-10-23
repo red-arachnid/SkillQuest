@@ -11,20 +11,19 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skillquest.backend.dto.skilldtos.SkillSummaryDto;
-import com.skillquest.backend.exception.ApiException;
 import com.skillquest.backend.model.User;
-import com.skillquest.backend.repository.UserRepository;
 import com.skillquest.backend.service.SkillService;
+import com.skillquest.backend.service.UserService;
 
 @RestController 
 @RequestMapping("/api/skills")
 public class SkillController {
     private final SkillService skillService;
-    private final UserRepository userRepository;
+    private final UserService userService;
 
-    public SkillController(SkillService skillService, UserRepository userRepository) {
+    public SkillController(SkillService skillService, UserService userService) {
         this.skillService = skillService;
-        this.userRepository = userRepository;
+        this.userService = userService;
     }
 
     @GetMapping("/browse")
@@ -33,8 +32,7 @@ public class SkillController {
         Authentication authentication,
         @RequestParam(defaultValue = "10") int limit
     ) {
-        User user = userRepository.findByEmail(authentication.getName())
-                    .orElseThrow(() -> new ApiException(HttpStatus.UNAUTHORIZED, "User no longer exists"));
+        User user = userService.getUser(authentication.getName());
         Long userId = user.getId();
         return skillService.getBrowseSkills(userId, limit);
     }

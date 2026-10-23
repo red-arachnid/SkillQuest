@@ -20,17 +20,20 @@ public class UserTaskService {
     private final SkillTaskRepository skillTaskRepository;
     private final UserSkillRepository userSkillRepository;
     private final UserService userService;
+    private final ActivityLogService activityLogService;
 
     public UserTaskService(
         UserTaskRepository userTaskRepository, 
         SkillTaskRepository skillTaskRepository,
         UserSkillRepository userSkillRepository,
-        UserService userService
+        UserService userService,
+        ActivityLogService activityLogService
     ) {
         this.userTaskRepository = userTaskRepository;
         this.skillTaskRepository = skillTaskRepository;
         this.userSkillRepository = userSkillRepository;
         this.userService = userService;
+        this.activityLogService = activityLogService;
     }
 
     @Transactional 
@@ -55,5 +58,7 @@ public class UserTaskService {
 
         int earnedXp = task.getTaskXp();
         user.setUserXp(user.getUserXp() + earnedXp);
+
+        activityLogService.logDayActivity(user);
     }
 }

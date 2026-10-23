@@ -21,21 +21,20 @@ import com.skillquest.backend.repository.UserRepository;
 public class SkillModuleService {
     private final SkillModuleRepository skillModuleRepository;
     private final SkillTaskRepository skillTaskRepository;
-    private final UserRepository userRepository;
+    private final UserService userService;
 
     public SkillModuleService(
         SkillModuleRepository skillModuleRepository, 
         SkillTaskRepository skillTaskRepository,
-        UserRepository userRepository
+        UserService userService
     ) {
         this.skillModuleRepository = skillModuleRepository;
         this.skillTaskRepository = skillTaskRepository;
-        this.userRepository = userRepository;
+        this.userService = userService;
     }
 
     public List<SkillModuleResponse> getSkillModulesOfSkill(String userEmail, Long skillId) {
-        User user = userRepository.findByEmail(userEmail)
-            .orElseThrow(() -> new ApiException(HttpStatus.UNPROCESSABLE_CONTENT, "User no longer exists"));
+        User user = userService.getUser(userEmail);
 
         return skillModuleRepository.getSkillModulesBySkillId(skillId)
         .stream().map(skillModule -> {
