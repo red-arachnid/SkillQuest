@@ -34,7 +34,7 @@ export default function Learning() {
 
     return (
         <div className="my-learning-page">
-            <PageHeading subHeading="Let's continue where you left of" />
+            <PageHeading subHeading="Let's continue where you left of" heading="Continue your learning."/>
             <Searchbar />
 
             {learningSkills && 

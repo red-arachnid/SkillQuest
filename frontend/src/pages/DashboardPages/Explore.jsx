@@ -11,7 +11,7 @@ import { useAuth } from '../../components/context/AuthContext';
 import { api } from '../../api';
 
 import { useEffect, useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 export default function Explore() {
     const { user } = useAuth();
@@ -19,7 +19,9 @@ export default function Explore() {
 
     const [skills, setSkills] = useState(null);
     const [confirmSkill, setConfirmSkill] = useState(null);
-    const [currentLearning, setCurrentLearning] = useState(user.lastActiveSkill);
+    const [selectedSkillId, setSelectedSkillId] = useState(user.lastActiveSkill);
+
+    const selectedSkill = skills?.find(s => s.id === selectedSkillId) ?? null;
 
     useEffect(() => {
         const controller = new AbortController();
@@ -36,7 +38,7 @@ export default function Explore() {
     useEffect(() => {
         const skillId = location.state?.skillId ?? null;
         if (skillId != null) {
-            setCurrentLearning(skills?.find(skill => skill.id === skillId));
+            setSelectedSkillId(skillId);
         }
     }, [skills]);
 
@@ -46,21 +48,21 @@ export default function Explore() {
             setConfirmSkill(skill);
             return;
         }
-        setCurrentLearning(skill);
+        setSelectedSkillId(skill.id);
     }
 
     return (
         <div className="explore-page">
-            { confirmSkill && <ConfirmLearningDialog skill={confirmSkill} setCurrentLearning={setCurrentLearning} onCancel={() => setConfirmSkill(null)}/>}
+            { confirmSkill && <ConfirmLearningDialog skill={confirmSkill} setSelectedSkillId={setSelectedSkillId} onCancel={() => setConfirmSkill(null)}/>}
 
             <PageHeading subHeading={`Hey ${user.name}! Pick a skill, Let the adventure begin`} />
             <Seachbar />
 
-            { currentLearning && 
-                <SkillLearning skill={currentLearning} />
+            { selectedSkill && 
+                <SkillLearning skill={selectedSkill} />
             }
 
-            { !currentLearning && skills && 
+            { !selectedSkill && skills && 
                 <div className="explore-skills">
                     <h3>Featured Skills</h3>
 
@@ -83,7 +85,7 @@ export default function Explore() {
 }
 
 
-function ConfirmLearningDialog({ skill, setCurrentLearning, onCancel }) {
+function ConfirmLearningDialog({ skill, setSelectedSkillId, onCancel }) {
     async function startLearningSkill(skill) {
         const body = {
             skillId: skill.id
@@ -91,7 +93,7 @@ function ConfirmLearningDialog({ skill, setCurrentLearning, onCancel }) {
 
         try {
             await api("/api/user-skills/start", { method: "POST", body });
-            setCurrentLearning(skill);
+            setSelectedSkillId(skill.id);
         }
         catch (e) {
             // Show this error on the ui if have time :)

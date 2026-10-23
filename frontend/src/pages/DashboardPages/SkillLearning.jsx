@@ -4,23 +4,40 @@ import SkillInfo from '../../components/utils/SkillInfo';
 import SkillModule from '../../components/utils/SkillModule';
 import { api } from '../../api';
 import { useAuth } from '../../components/context/AuthContext';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { faBolt, faUpRightFromSquare, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { faClock } from '@fortawesome/free-regular-svg-icons';
+import ProgressCard from '../../components/utils/ProgressCard';
 
 
 export default function SkillLearning({ skill }) {
     const [skillModules, setSkillModules] = useState(null);
     const [showTaskDetail, setShowTaskDetail] = useState(null);
 
+    const earnedXp = useMemo(() => {
+        if (!skillModules) return 0;
+
+        let earned = 0;
+
+        skillModules.forEach(module => {
+            module.tasks.forEach(task => {
+                if (task.isDone) {
+                    earned += task.taskXp;
+                }
+            });
+        });
+
+        return earned;
+    }, [skillModules]);
+
     useEffect(() => {
         if (!skill) return;
-
+        
         const body = { skillId: skill.id }
         api(`/api/skill-module/${skill.id}`, { method: "GET", body })
-            .then(modules => setSkillModules(modules))
-            .catch((e) => console.log(e));
-
+        .then(modules => setSkillModules(modules))
+        .catch((e) => console.log(e));
+        
     }, [skill, showTaskDetail]);
 
     return (
@@ -40,7 +57,7 @@ export default function SkillLearning({ skill }) {
             </div>
 
             <div className="stats">
-
+                <ProgressCard totalTasks={skill.totalTasks} completedTasks={skill.doneTasks} xpEarned={earnedXp} />
             </div>
         </div>
     ); 
