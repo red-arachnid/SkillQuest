@@ -20,7 +20,10 @@ export function AuthProvider({children}) {
 
     // Checks if a token is saved and checks it with backend
     useEffect(() => {
-        if (!tokenStore.get()) return;
+        if (!tokenStore.get()) {
+            setIsLoading(false);
+            return;
+        }
         api("/api/auth/me")
             .then(user => setUser(user))
             .catch(() => tokenStore.clear())

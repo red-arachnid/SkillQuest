@@ -53,7 +53,17 @@ CREATE TABLE resources (
     type VARCHAR(20) NOT NULL DEFAULT 'ARTICLE',
     is_free BIT(1) NOT NULL DEFAULT b'1',
     CONSTRAINT fk_resources_skill FOREIGN KEY (skill_id) REFERENCES skills (id) ON DELETE CASCADE,
-    CONSTRAINT fk_resources_task FOREIGN KEY (task_id) REFERENCES skill_tasks (id) ON DELETE SET NULL
+    CONSTRAINT fk_resources_task FOREIGN KEY (task_id) REFERENCES skill_tasks (id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE quizzes (
+    id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    skill_id BIGINT NOT NULL,
+    task_id BIGINT NULL,
+    question TEXT NOT NULL,
+    answer BIT(1) NOT NULL DEFAULT b'1',
+    CONSTRAINT fk_quzzes_skill FOREIGN KEY (skill_id) REFERENCES skills (id) ON DELETE CASCADE,
+    CONSTRAINT fk_resource_task FOREIGN KEY (task_id) REFERENCES skill_tasks (id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE user_skills (

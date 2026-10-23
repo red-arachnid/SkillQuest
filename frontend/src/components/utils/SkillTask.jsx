@@ -2,7 +2,24 @@ import '../../styles/skillTask.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBookOpen, faPlay, faBullseye, faTabletScreenButton, faBolt, faSquareCheck } from '@fortawesome/free-solid-svg-icons';
 import { faSquare, faClock } from '@fortawesome/free-regular-svg-icons';
+import { motion } from 'framer-motion';
 
+const itemVariants = {
+  hidden: { 
+    opacity: 0, 
+    rotateX: -90,
+    originY: 0    
+  },
+  visible: { 
+    opacity: 1, 
+    rotateX: 0,  
+    transition: { 
+      type: "spring", 
+      stiffness: 80, 
+      damping: 12
+    }
+  },
+};
 
 export default function SkillTask({ task, onTaskStart }) {
     function getFormatIcon(format) {
@@ -15,7 +32,7 @@ export default function SkillTask({ task, onTaskStart }) {
     }
 
     return (
-        <div className="skill-task">
+        <motion.div variants={itemVariants} className="skill-task">
             <div className="check-box">
                 <FontAwesomeIcon icon={faSquare} size="lg" />
             </div>
@@ -42,7 +59,7 @@ export default function SkillTask({ task, onTaskStart }) {
             </div>
 
             <button className={``} onClick={() => onTaskStart(task)} >Start</button>
-        </div>
+        </motion.div>
     );
 }
 

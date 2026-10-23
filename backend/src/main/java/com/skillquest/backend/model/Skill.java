@@ -53,6 +53,9 @@ public class Skill {
     @OneToMany(mappedBy = "skill", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Resource> resources = new ArrayList<>();
 
+    @OneToMany(mappedBy = "skill", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Quiz> quizzes = new ArrayList<>();
+
     public Long getId() { return id; }
     public String getSlug() { return slug; }
     public String getName() { return name; }
@@ -63,6 +66,7 @@ public class Skill {
     public int getEstimatedHours() { return estimatedHours; }
     public List<SkillModule> getModules() { return modules; }
     public List<Resource> getResources() { return resources; }
+    public List<Quiz> getQuizzes() { return quizzes; }
 
     public void setSlug(String slug) { this.slug = slug; }
     public void setName(String name) { this.name = name; }
@@ -80,5 +84,10 @@ public class Skill {
     public void addResource(Resource resource) {
         resources.add(resource);
         resource.setSkill(this);
+    }
+
+    public void addQuiz(Quiz quiz) {
+        quizzes.add(quiz);
+        quiz.setSkill(this);
     }
 }

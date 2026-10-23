@@ -1,7 +1,6 @@
 package com.skillquest.backend.model;
 
 import java.time.Instant;
-import java.time.LocalDate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
