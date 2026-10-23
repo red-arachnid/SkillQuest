@@ -43,7 +43,7 @@ public class UserTaskService {
         UserSkill userSkill = userSkillRepository.findByUserIdAndSkillId(user.getId(), skillId)
             .orElseThrow(() -> new ApiException(HttpStatus.NOT_FOUND, "The skill type does not exist"));
 
-        if (userTaskRepository.existsByUserSkillIdAndTaskId(skillId, taskId)) {
+        if (userTaskRepository.existsByUserSkillIdAndTaskId(userSkill.getId(), taskId)) {
             throw new ApiException(HttpStatus.BAD_REQUEST, "Task already marked as completed");
         }
 

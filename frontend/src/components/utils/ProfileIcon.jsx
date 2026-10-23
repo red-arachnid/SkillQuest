@@ -22,4 +22,5 @@ const style = {
     fontWeight: "500",
     fontSize: "14px",
     cursor: "pointer",
+    pointerEvent: "none"
 }

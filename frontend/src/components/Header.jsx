@@ -6,8 +6,13 @@ import { faFireFlameCurved, faBolt } from '@fortawesome/free-solid-svg-icons'
 import { useAuth } from './context/AuthContext';
 
 export default function Header({ profileName }) {
-    const { user } = useAuth();
+    const { user, logout } = useAuth();
     const streak = user.currentStreak ?? 0;
+
+    function onProfileClick() {
+        const ask = confirm("Do you really want to log out?");
+        if (ask) logout();
+    }
 
     return (
         <div className="header">
@@ -36,7 +41,9 @@ export default function Header({ profileName }) {
                     <FontAwesomeIcon icon={faBell} size="md"/>
                 </div>
 
-                <ProfileIcon profileName={profileName}/>
+                <button className="clickable" onClick={onProfileClick}>
+                    <ProfileIcon profileName={profileName}/>
+                </button>
             </div>
         </div>
     );
