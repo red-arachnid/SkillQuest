@@ -10,16 +10,12 @@
     border: 2px solid var(--border1);
 
     display: grid;
-    grid-template-columns: 0.5fr 8fr 0.5fr;
+    grid-template-columns: 1fr 16fr 1fr;
     align-items: center;
     gap: 15px;
-
-    transition: border-color 0.2s ease,
-                transform 0.2s ease;
 }
-.skill-task:hover {
-    border-color: var(--border2);
-    transform: translateY(-4px);
+.skill-task.done {
+    background-color: var(--ui6);
 }
 
 .skill-task .check-box {
@@ -81,4 +77,10 @@
 .skill-task button:active {
     box-shadow: none;
     transform: translateY(4px);
+}
+
+.skill-task .complete {
+    font-family: var(--font2);
+    font-weight: 700;
+    color: var(--ui7);
 }

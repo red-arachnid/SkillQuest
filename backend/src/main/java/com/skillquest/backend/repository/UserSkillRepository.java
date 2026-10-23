@@ -1,6 +1,7 @@
 package com.skillquest.backend.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -37,4 +38,6 @@ public interface UserSkillRepository extends JpaRepository<UserSkill, Long>{
     List<UserSkillSummaryProjection> getAllSkillsOfUser(
         @Param("userId") Long userId
     );
+
+    Optional<UserSkill> findByUserIdAndSkillId(Long userId, Long skillId);
 }

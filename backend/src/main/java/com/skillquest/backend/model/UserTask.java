@@ -1,7 +1,6 @@
 package com.skillquest.backend.model;
 
 import java.time.Instant;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -32,9 +31,9 @@ public class UserTask {
     private SkillTask task;
 
     @Column(name = "is_done", nullable = false)
-    private boolean done = false;
+    private boolean done = true;
 
-    private Instant completedAt;
+    private Instant completedAt = Instant.now();
 
     public Long getId() { return id; }
     public UserSkill getUserSkill() { return userSkill; }
@@ -45,5 +44,4 @@ public class UserTask {
     public void setUserSkill(UserSkill userSkill) { this.userSkill = userSkill; }
     public void setTask(SkillTask task) { this.task = task; }
     public void setDone(boolean done) { this.done = done; }
-    public void setCompletedAt(Instant completedAt) { this.completedAt = completedAt; }
 }
