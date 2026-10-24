@@ -51,12 +51,30 @@ export default function Explore() {
         setSelectedSkillId(skill.id);
     }
 
+    async function searchSkill(skillString) {
+        if (!skillString) return;
+        
+        try {
+            const data = await api(`/api/search/skill/${skillString}`, { method: "GET" });
+            if (data.length > 0) {
+                setSelectedSkillId(null);
+                setSkills(data);
+            }
+            else {
+                setSelectedSkillId(null);
+            }
+        }
+        catch (e) {
+            console.log(e);
+        }
+    }
+
     return (
         <div className="explore-page">
             { confirmSkill && <ConfirmLearningDialog skill={confirmSkill} setSelectedSkillId={setSelectedSkillId} onCancel={() => setConfirmSkill(null)}/>}
 
             <PageHeading subHeading={`Hey ${user.name}! Pick a skill, Let the adventure begin`} />
-            <Seachbar />
+            <Seachbar onClick={searchSkill} />
 
             { selectedSkill && 
                 <SkillLearning skill={selectedSkill} />

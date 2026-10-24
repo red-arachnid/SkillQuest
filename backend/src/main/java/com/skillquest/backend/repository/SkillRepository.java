@@ -38,4 +38,29 @@ public interface SkillRepository extends JpaRepository<Skill, Long> {
         @Param("excludedStatus") SkillStatus excludedStatus,
         Pageable pageable
     );
+
+    @Query("""
+        SELECT s AS skill, us.status AS status, (
+            SELECT SUM(taskXp) FROM SkillModule sm
+            JOIN SkillTask st ON st.module = sm
+            WHERE sm.skill = s
+        ) AS skillXp, (
+            SELECT COUNT(st) FROM SkillModule sm
+            JOIN SkillTask st ON st.module = sm
+            WHERE sm.skill = s 
+        ) AS totalTasks, (
+            SELECT COUNT(ut) FROM UserTask ut
+            JOIN ut.task t
+            JOIN t.module sm
+            WHERE sm.skill = s AND ut.userSkill.user.id = :userId AND ut.done = true
+        ) AS doneTasks
+        FROM Skill s
+        LEFT JOIN UserSkill us ON us.skill = s AND us.user.id = :userId
+        WHERE (LOWER(s.slug) LIKE LOWER(CONCAT('%', REPLACE(:skillname, ' ', '-'), '%')))
+        ORDER BY s.id ASC
+        """)
+    List<SkillSummaryProjection> findSkillBySkillName(
+        @Param("userId") Long userId,
+        @Param("skillname") String skillname
+    );
 }
