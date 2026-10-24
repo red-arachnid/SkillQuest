@@ -24,16 +24,20 @@ export default function ActivityHeatmap({ heatmapData }) {
             days.push(<div key={`empty-${i}`} className="day-circle empty-slot" ></div>);
         }
 
+        let streakStarted = false;
         for (let day = 1; day <= daysInMonth; ++day) {
             const dateString = `${year}-${String(month+1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
             const logCount = activeDates.get(dateString) || 0;
+
+            if (logCount > 0) streakStarted = true;
 
             days.push(
                 <div 
                     key={day} 
                     className={`day-circle ${logCount > 0 ? `active-${Math.min(logCount, 4)}` : 'inactive'}`}
-                    title={`${dateString}: ${logCount > 0 ? 'Completed' : 'No activity'}`}
+                    title={`${dateString}: ${logCount > 0 ? 'Completed' : streakStarted ? 'freeze' : 'inactive'}`}
                 >
+                    {day}
                 </div>
             );
         }

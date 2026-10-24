@@ -79,15 +79,19 @@
 .heatmap .day-circle.inactive {
     background-color: var(--ui6);
 }
+.heatmap .day-circle.freeze {
+    background-color: var(--ui2);
+    border: 2px solid var(--border2);
+}
 
 .heatmap .day-circle.active-1 {
-    background-color: hsl(3, 63%, 64%);
+    background-color: hsl(3, 63%, 72%);
 }
 .heatmap .day-circle.active-2 {
-    background-color: hsl(3, 63%, 59%);
+    background-color: hsl(3, 63%, 65%);
 }
 .heatmap .day-circle.active-3 {
-    background-color: hsl(3, 63%, 53%);
+    background-color: hsl(3, 63%, 59%);
 }
 .heatmap .day-circle.active-4 {
     background-color: var(--ui1);
