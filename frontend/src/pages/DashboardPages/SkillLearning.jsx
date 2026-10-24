@@ -76,6 +76,7 @@ export default function SkillLearning({ skill }) {
 
 function TaskDetails({ skill, task, setShowTaskDetail }) {
     const { refreshUserData } = useAuth();
+    const [hasClicked, setHasClicked] = useState(task.resource ? false : true);
     const [loading, setLoading] = useState(false);
     
     async function onTaskComplete() {
@@ -128,13 +129,17 @@ function TaskDetails({ skill, task, setShowTaskDetail }) {
                         target="_blank" 
                         rel="noopener noreferrer" 
                         className="resource" 
+                        onClick={() => setHasClicked(true)}
                     >
                         <p>{task.format}</p>
                         <FontAwesomeIcon icon={faUpRightFromSquare} />
                     </a>
                 }
 
-                <button disabled={loading} onClick={onTaskComplete} className="done">Mark done</button>
+                { !task.isDone 
+                    ? <button disabled={loading || !hasClicked} onClick={onTaskComplete} className="done">Mark done</button>
+                    : <button disabled={loading} onClick={() => setShowTaskDetail(null)} className="done">Close</button>
+                }
             </div>
         </div>
     );

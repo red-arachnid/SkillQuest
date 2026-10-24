@@ -33,7 +33,7 @@ export default function Explore() {
         return () => {
             controller.abort();
         };
-    }, [user]);
+    }, [user, ]);
 
     useEffect(() => {
         const skillId = location.state?.skillId ?? null;
@@ -63,6 +63,7 @@ export default function Explore() {
                 setSkills(data);
             }
             else {
+                setSkills
                 setSelectedSkillId(null);
             }
         }

@@ -2,7 +2,6 @@ package com.skillquest.backend.model;
 
 import jakarta.persistence.*;
 import java.time.Instant;
-import java.time.LocalDate;
 
 @Entity 
 @Table(name = "users")

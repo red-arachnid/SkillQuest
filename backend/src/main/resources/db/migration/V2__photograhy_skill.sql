@@ -15,13 +15,12 @@ INSERT INTO skill_tasks (id, module_id, title, description, position, est_minute
 (2, 1, 'Identify your camera controls', 'Find the power button, mode dial, shutter button, zoom or lens controls, screen, and menu button on your camera or phone camera app.', 2, 15, 'PRACTICE', 15),
 (3, 1, 'Learn the main shooting modes', 'Learn what Auto, Program, Aperture Priority, Shutter Priority, and Manual modes are used for.', 3, 15, 'READ', 10),
 (4, 1, 'Take your first ten photos', 'Photograph one simple object from ten different distances and angles using Auto mode.', 4, 25, 'PRACTICE', 25),
-(5, 1, 'Understand image resolution and aspect ratio', 'Learn what megapixels, image size, and aspect ratio mean for sharing and printing photos.', 5, 15, 'READ', 10),
-(6, 1, 'Practice holding the camera steadily', 'Use two hands, keep elbows close to your body, and take five photos while focusing on keeping the camera stable.', 6, 15, 'PRACTICE', 15),
+(5, 1, 'Understand image resolution and aspect ratio', 'Learn what megapixels, image size, and aspect ratio mean for sharing and printing photos.', 5, 10, 'READ', 10),
 (7, 1, 'Review your first photos', 'Choose your best and weakest photo from the ten-photo exercise and write one sentence explaining each choice.', 7, 15, 'PRACTICE', 20),
 
 -- Module 2: Mastering Exposure
 (8, 2, 'Learn the exposure triangle', 'Understand how aperture, shutter speed, and ISO work together to control brightness.', 1, 20, 'READ', 15),
-(9, 2, 'Watch exposure explained simply', 'Watch a beginner-friendly explanation of the exposure triangle and its creative effects.', 2, 15, 'VIDEO', 10),
+(9, 2, 'Watch exposure explained simply', 'Watch a beginner-friendly explanation of the exposure triangle and its creative effects.', 2, 5, 'VIDEO', 10),
 (10, 2, 'Explore aperture', 'Learn how aperture affects both brightness and how much of the photo is in focus.', 3, 15, 'READ', 15),
 (11, 2, 'Practice aperture with one subject', 'Photograph the same subject using a wide aperture and a narrow aperture, then compare background blur.', 4, 25, 'PRACTICE', 30),
 (12, 2, 'Explore shutter speed', 'Learn how fast and slow shutter speeds freeze or blur movement.', 5, 15, 'READ', 15),

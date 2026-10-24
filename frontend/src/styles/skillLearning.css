@@ -11,10 +11,6 @@
     display: block;
 }
 
-.skill-learning .stats {
-
-}
-
 .main h3 {
     font-family: var(--font1);
     font-size: 24px;
@@ -119,15 +115,16 @@
     border: none;
     box-shadow: 0px 5px 1px var(--ui1-dark);
     transition: transform 0.1s ease,
-                box-shadow 0.1s ease;
+                box-shadow 0.1s ease,
+                background-color 0.1s ease;
 }
 .learn-skill .done:active {
     box-shadow: none;
     transform: translateY(4px);
 }
 .learn-skill .done:disabled {
+    background-color: var(--ui1-light);
     transform: translateY(4px);
     box-shadow: none;
-    color: grey;
     pointer-events: none;
 }

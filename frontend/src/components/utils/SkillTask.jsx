@@ -52,6 +52,7 @@ export default function SkillTask({ task, onTaskStart }) {
             variants={itemVariants} 
             whileHover={!isDone ? "hover" : ""}
             className={`skill-task ${isDone ? 'done' : ''}`}
+            onClick={() => onTaskStart(task)}
         >
             <div className="check-box">
                 <FontAwesomeIcon icon={isDone ? faSquareCheck : faSquare} size="lg" />
@@ -79,7 +80,7 @@ export default function SkillTask({ task, onTaskStart }) {
             </div>
 
             {!isDone 
-            ? <button onClick={() => onTaskStart(task)} >Start</button>
+            ? <button>Start</button>
             : <p className="complete" >DONE</p>}
         </motion.div>
     );

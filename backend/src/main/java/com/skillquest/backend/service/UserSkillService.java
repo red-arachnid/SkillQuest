@@ -14,7 +14,6 @@ import com.skillquest.backend.model.User;
 import com.skillquest.backend.model.UserSkill;
 import com.skillquest.backend.model.enums.SkillStatus;
 import com.skillquest.backend.repository.SkillRepository;
-import com.skillquest.backend.repository.UserRepository;
 import com.skillquest.backend.repository.UserSkillRepository;
 
 import jakarta.transaction.Transactional;
