@@ -58,6 +58,7 @@ public class UserTaskService {
 
         int earnedXp = task.getTaskXp();
         user.setUserXp(user.getUserXp() + earnedXp);
+        user.setLastActiveSkill(skillId);
 
         activityLogService.logDayActivity(user);
     }

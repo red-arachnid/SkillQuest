@@ -6,7 +6,6 @@ CREATE TABLE users (
     created_at DATETIME(6) NOT NULL,
     current_streak INT NOT NULL DEFAULT 0,
     longest_streak INT NOT NULL DEFAULT 0,
-    last_active_date DATE NULL,
     user_xp INT NOT NULL DEFAULT 0,
     last_active_skill BIGINT NULL,
     CONSTRAINT uk_users_email UNIQUE (email)

@@ -17,6 +17,8 @@ import com.skillquest.backend.repository.SkillRepository;
 import com.skillquest.backend.repository.UserRepository;
 import com.skillquest.backend.repository.UserSkillRepository;
 
+import jakarta.transaction.Transactional;
+
 @Service 
 public class UserSkillService {
     private final UserSkillRepository userSkillRepository;
@@ -29,6 +31,7 @@ public class UserSkillService {
         this.skillRepository = skillRepository;
     }
 
+    @Transactional 
     public void startLearningSkill(String userEmail, StartSkillRequest request) {
         User user = userService.getUser(userEmail);
         
@@ -44,6 +47,7 @@ public class UserSkillService {
         userSkill.setStatus(SkillStatus.ACTIVE);
 
         userSkillRepository.save(userSkill);
+        user.setLastActiveSkill(skill.getId());
     }
 
     public List<UserSkillSummaryDto> getAllSkillOfUser(String userEmail) {
