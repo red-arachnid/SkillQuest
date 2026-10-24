@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skillquest.backend.dto.skilldtos.SkillSummaryDto;
+import com.skillquest.backend.dto.skilldtos.UserSkillSummaryDto;
 import com.skillquest.backend.service.SearchSkillService;
 
 import java.util.List;
@@ -30,4 +31,10 @@ public class SearchSkillController {
     public List<SkillSummaryDto> getSkillBySkillSlug(Authentication authentication, @PathVariable String skillname) {
         return searchSkillService.getSkillsBySkillSlug(authentication.getName(), skillname);
     }
+
+    @GetMapping("/user-skill/{skillname}")
+    public List<UserSkillSummaryDto> getUserSkillBySkillSlug(Authentication authentication, @PathVariable String skillname) {
+        return searchSkillService.getUserSkillBySkillSlug(authentication.getName(), skillname);
+    }
+    
 }

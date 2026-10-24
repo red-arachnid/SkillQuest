@@ -52,7 +52,9 @@ export default function Explore() {
     }
 
     async function searchSkill(skillString) {
-        if (!skillString) return;
+        if (!skillString) {
+            setSelectedSkillId(null);
+        }
         
         try {
             const data = await api(`/api/search/skill/${skillString}`, { method: "GET" });

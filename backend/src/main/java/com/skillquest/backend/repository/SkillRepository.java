@@ -59,7 +59,7 @@ public interface SkillRepository extends JpaRepository<Skill, Long> {
         WHERE (LOWER(s.slug) LIKE LOWER(CONCAT('%', REPLACE(:skillname, ' ', '-'), '%')))
         ORDER BY s.id ASC
         """)
-    List<SkillSummaryProjection> findSkillBySkillName(
+    List<SkillSummaryProjection> findSkillsBySkillName(
         @Param("userId") Long userId,
         @Param("skillname") String skillname
     );

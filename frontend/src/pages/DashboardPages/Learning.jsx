@@ -32,10 +32,25 @@ export default function Learning() {
         });
     }
 
+    async function searchUserSkill(skillString) {
+        if (!skillString) return;
+        
+        try {
+            const data = await api(`/api/search/user-skill/${skillString}`, { method: "GET" });
+            if (data.length > 0) {
+                setLearningSkills(data);
+                console.log(data);
+            }
+        }
+        catch (e) {
+            console.log(e);
+        }
+    }
+
     return (
         <div className="my-learning-page">
             <PageHeading subHeading="Let's continue where you left of" heading="Continue your learning."/>
-            <Searchbar />
+            <Searchbar onClick={searchUserSkill} />
 
             {learningSkills && 
                 <div className="learning-skills">

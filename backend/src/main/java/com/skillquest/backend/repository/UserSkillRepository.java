@@ -40,4 +40,31 @@ public interface UserSkillRepository extends JpaRepository<UserSkill, Long>{
     );
 
     Optional<UserSkill> findByUserIdAndSkillId(Long userId, Long skillId);
+
+    @Query("""
+        SELECT 
+            us.id AS id,
+            us.skill AS skill,
+            us.status AS status,
+            us.startedAt AS startedAt,
+            us.completedAt AS completedAt,
+            (
+                SELECT COUNT(st) FROM SkillModule sm
+                JOIN SkillTask st ON st.module = sm
+                WHERE sm.skill = us.skill
+            ) AS totalTasks,
+            (
+                SELECT COUNT(ut) FROM UserTask ut
+                JOIN ut.task t
+                JOIN t.module sm
+                WHERE sm.skill = us.skill AND ut.userSkill = us AND ut.done = true
+            ) AS doneTasks
+            FROM UserSkill us
+            WHERE us.user.id = :userId AND (LOWER(us.skill.slug) LIKE LOWER(CONCAT('%', REPLACE(:skillname, ' ', '-'), '%')))
+            ORDER BY us.startedAt DESC
+        """)
+    List<UserSkillSummaryProjection> findUserSkillsBySkillName(
+        @Param("userId") Long usedId,
+        @Param ("skillname") String skillname
+    );
 }
