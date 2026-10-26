@@ -1,5 +1,5 @@
-const BASE = "http://localhost:8080";   //! Change it later
-const TOKEN_KEY_NAME = "skillquest_token";
+const BASE = process.env.VITE_APP_API_BASE;   //! Change it later
+const TOKEN_KEY_NAME = process.env.VITE_TOKEN_KEY_NAME;
 
 export const tokenStore = {
     get: () => localStorage.getItem(TOKEN_KEY_NAME),
