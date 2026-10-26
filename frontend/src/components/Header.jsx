@@ -17,7 +17,7 @@ export default function Header({ profileName }) {
     return (
         <div className="header">
             <div className="header-left">
-                <p>Explore Skills</p>
+                <p>Keep Learning, Keep Growing</p>
             </div>
             
             <div className="header-right">
@@ -37,9 +37,9 @@ export default function Header({ profileName }) {
 
                 <div className="bar"></div>
 
-                <div className="notification">
+                {/* <div className="notification">
                     <FontAwesomeIcon icon={faBell} size="md"/>
-                </div>
+                </div> */}
 
                 <button className="clickable" onClick={onProfileClick}>
                     <ProfileIcon profileName={profileName}/>

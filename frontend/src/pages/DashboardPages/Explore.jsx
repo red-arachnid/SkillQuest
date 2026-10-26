@@ -85,7 +85,7 @@ export default function Explore() {
 
             { !selectedSkill && skills && 
                 <div className="explore-skills">
-                    <h3>Featured Skills</h3>
+                    <h3>Available Skills</h3>
 
                     <div className="skillcard-container">
                         {skills.map(skill => (
