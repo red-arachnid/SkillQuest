@@ -1,6 +1,5 @@
 # SkillQuest
 
-![Live Demo](https://img.shields.io/badge/Live-Demo-blue?style=for-the-badge&link=https://skill-quest-green.vercel.app.com)
 > **The PROBLEM: Find a daily frustration. Build the fix. Java is the brain, JavaScript is the face.**
 
 ## Introduction
