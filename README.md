@@ -46,6 +46,12 @@ SkillQuest/
 └── docker-compose.yml      # Orchestration for full-stack deployment
 ```
 
+## Architecture
+
+**Browser → JavaScript → API → Java → Database**
+
+![Architecture](./assets/Architecture_Flow_Diagram.png)
+
 ## Database Structure
 ![Database](./assets/ER_Diagram_For_Database.png)
 
@@ -79,6 +85,26 @@ npm install
 npm run dev
 ```
 The frontend will typically be accessible at `http://localhost:5173`.
+
+
+## User Test Notes
+
+*Use this section to document feedback from real users to improve the application iteratively.*
+
+### Tester 1
+*   **What they tested:**  Dashboard Heatmap
+*   **What they said:** *"I love seeing my daily progress, but the heatmap colors were a bit hard to read on my monitor."*
+*   **What was changed:**  Updated the CSS color palette for the heatmap to ensure higher contrast and better accessibility.
+
+### Tester 2
+*   **What they tested:** Skill Module Navigation
+*   **What they said:** *: "Getting back to the main skill list from a specific task felt like it took too many clicks."*
+*   **What can be changed:**  Adding a sticky breadcrumb navigation bar at the top of the Skill Modules page for quicker back-tracking.
+
+### Tester 3
+*   **What they tested:** Task Completion
+*   **What they said:** *"I clicked complete on a task, but nothing happened right away, so I clicked it twice."*
+*   **What we changed:**  Implemented a loading feature where the button is disabled until it gets response from backend to prevent repeated calls
 
 ## What I learnt
 Building SkillQuest during a fast-paced hackathon was an incredible learning experience. Key takeaways include:
