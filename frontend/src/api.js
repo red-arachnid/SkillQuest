@@ -1,5 +1,5 @@
-const BASE = process.env.VITE_APP_API_BASE;   //! Change it later
-const TOKEN_KEY_NAME = process.env.VITE_TOKEN_KEY_NAME;
+const BASE = import.meta.env.VITE_APP_API_BASE;
+const TOKEN_KEY_NAME = import.meta.env.VITE_TOKEN_KEY_NAME;
 
 export const tokenStore = {
     get: () => localStorage.getItem(TOKEN_KEY_NAME),
