@@ -1,4 +1,4 @@
-package com.skillquest.backend;
+package com.skillquest.backend.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
