@@ -1,5 +1,6 @@
 # SkillQuest
 
+(https://www.readmecodegen.com/api/social-icon?name=github&size=32&bg=transparent)[skill-quest-green.vercel.app]
 > **The PROBLEM: Find a daily frustration. Build the fix. Java is the brain, JavaScript is the face.**
 
 ## Introduction
@@ -97,17 +98,17 @@ Here is an overview of the core REST API endpoints powering the application:
 
 *Use this section to document feedback from real users to improve the application iteratively.*
 
-### Tester 1: [Tejasvi Maheshwari]
+### Tester 1: Tejasvi Maheshwari
 *   **What they tested:**  Dashboard Heatmap
 *   **What they said:** *"I love seeing my daily progress, but the heatmap colors were a bit hard to read on my monitor."*
 *   **What was changed:**  Updated the CSS color palette for the heatmap to ensure higher contrast and better accessibility.
 
-### Tester 2: [Deepak Rawat]
+### Tester 2: Deepak Rawat
 *   **What they tested:** Skill Module Navigation
 *   **What they said:** *: "Getting back to the main skill list from a specific task felt like it took too many clicks."*
 *   **What can be changed:**  Adding a sticky breadcrumb navigation bar at the top of the Skill Modules page for quicker back-tracking.
 
-### Tester 3: [Bharat]
+### Tester 3: Bharat
 *   **What they tested:** Task Completion
 *   **What they said:** *"I clicked complete on a task, but nothing happened right away, so I clicked it twice."*
 *   **What can be changed:**  Implementing an optimistic UI update and a small toast notification to give immediate visual feedback when a task is marked done.
